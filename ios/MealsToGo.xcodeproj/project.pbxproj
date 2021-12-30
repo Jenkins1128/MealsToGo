@@ -122,6 +122,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				EC04CF59886A6BD777A7461E /* Pods */,
+				9393613093B24324A70E0FF9 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -137,6 +138,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		9393613093B24324A70E0FF9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
+			path = "";
+			sourceTree = "<group>";
+		};
 		EC04CF59886A6BD777A7461E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,7 +154,6 @@
 				28C52A06D2356CD7B29FD5F6 /* Pods-MealsToGo-MealsToGoTests.debug.xcconfig */,
 				1CACC18D856B1BB8F4D08F9E /* Pods-MealsToGo-MealsToGoTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -485,6 +493,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2ZW8D4GCGX;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = MealsToGo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -511,6 +520,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2ZW8D4GCGX;
 				INFOPLIST_FILE = MealsToGo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
