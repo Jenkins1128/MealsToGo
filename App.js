@@ -1,28 +1,19 @@
-import React, {useState} from 'react';
-import {SafeAreaView, StatusBar, StyleSheet, Text, View} from 'react-native';
-import {Searchbar} from 'react-native-paper';
+import React from 'react';
+import {ThemeProvider} from 'styled-components/native';
+import {StatusBar} from 'react-native';
+
+import {theme} from './src/infrastructure/theme';
 import {RestaurantsScreen} from './src/features/screens/restaurants.screen';
 
 const App = () => {
-  // const [searchQuery, setSearchQuery] = useState('');
-
-  // const onChangeSearch = query => setSearchQuery(query);
-
   return (
     <>
-      <RestaurantsScreen />
+      <ThemeProvider theme={theme}>
+        <RestaurantsScreen />
+      </ThemeProvider>
       <StatusBar style="auto" />
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: StatusBar.currentHeight,
-  },
-  search: {padding: 16, backgroundColor: 'green'},
-  list: {flex: 1, padding: 16, backgroundColor: 'blue'},
-});
 
 export default App;
