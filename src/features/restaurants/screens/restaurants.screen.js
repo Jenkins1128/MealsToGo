@@ -10,6 +10,7 @@ import {RestaurantsContext} from '../../../services/restaurants/restaurants.cont
 
 import {Search} from '../components/search.component';
 import {RestaurantInfoCard} from '../components/restaurant-info-card.component';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 const RestaurantList = styled(FlatList).attrs({
   contentContainerStyle: {
@@ -27,7 +28,7 @@ const LoadingContainer = styled.View`
   left: 50%;
 `;
 
-export const RestaurantsScreen = () => {
+export const RestaurantsScreen = ({navigation}) => {
   const {isLoading, restaurants} = useContext(RestaurantsContext);
 
   return (
@@ -42,9 +43,16 @@ export const RestaurantsScreen = () => {
         data={restaurants}
         renderItem={({item}) => {
           return (
-            <Spacer position="bottom" size="large">
-              <RestaurantInfoCard restaurant={item} />
-            </Spacer>
+            <TouchableOpacity
+              onPress={() =>
+                navigation.navigate('RestaurantDetail', {
+                  restaurant: item,
+                })
+              }>
+              <Spacer position="bottom" size="large">
+                <RestaurantInfoCard restaurant={item} />
+              </Spacer>
+            </TouchableOpacity>
           );
         }}
         keyExtractor={item => item.name}
