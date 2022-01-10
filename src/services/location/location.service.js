@@ -3,7 +3,7 @@ import camelize from 'camelize';
 import {locations} from './location.mock';
 
 export const locationRequest = searchTerm => {
-  console.log('searchTerm', searchTerm);
+  //console.log('searchTerm', searchTerm);
   return new Promise((resolve, reject) => {
     const locationMock = locations[searchTerm];
     if (!locationMock) {
