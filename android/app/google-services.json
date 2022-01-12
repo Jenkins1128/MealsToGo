@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "58334698880",
+    "project_id": "mealstogo-52272",
+    "storage_bucket": "mealstogo-52272.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:58334698880:android:ba51df141bd816a1a53565",
+        "android_client_info": {
+          "package_name": "com.mealstogo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "58334698880-0qaujcdsn802topimhpcsj22rnge5b1n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAdsuC0HUZ3LENCThPcwSE6W-C_jAdVBs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "58334698880-0qaujcdsn802topimhpcsj22rnge5b1n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
