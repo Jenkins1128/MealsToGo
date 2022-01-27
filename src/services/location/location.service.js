@@ -1,19 +1,22 @@
 import camelize from 'camelize';
+import axios from 'axios';
 
-import {locations} from './location.mock';
+import {host, isMock} from '../../utils/env';
 
-export const locationRequest = searchTerm => {
-  //console.log('searchTerm', searchTerm);
-  return new Promise((resolve, reject) => {
-    const locationMock = locations[searchTerm];
-    if (!locationMock) {
-      reject('not found');
-    }
-    resolve(locationMock);
-  });
+export const locationRequest = async searchTerm => {
+  const url = `${host}/geocode?city=${searchTerm}&mock=${isMock}`;
+  console.log('searchTerm', url);
+  try {
+    const res = await axios.get(url);
+    return res.data;
+  } catch (error) {
+    console.log('error', error);
+    return error.json();
+  }
 };
 
 export const locationTransform = result => {
+  console.log('result', result);
   const formattedResponse = camelize(result);
   const {geometry = {}} = formattedResponse.results[0];
   const {lat, lng} = geometry.location;

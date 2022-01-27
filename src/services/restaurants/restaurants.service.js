@@ -1,21 +1,22 @@
-import {mockImages, mocks} from './mock/index.js';
 import camelize from 'camelize';
+import axios from 'axios';
+import {host, isMock} from '../../utils/env';
 
-export const restaurantsRequest = (location = '37.7749295,-122.4194155') => {
-  return new Promise((resolve, reject) => {
-    const mock = mocks[location];
-    if (!mock) {
-      reject('not found');
-    }
-    resolve(mock);
-  });
+export const restaurantsRequest = async location => {
+  console.log('location', location);
+  try {
+    const res = await axios.get(
+      `${host}/placesNearby?location=${location}&mock=${isMock}`,
+    );
+    return res.data;
+  } catch (error) {
+    console.log('error', error);
+    return error.json();
+  }
 };
 
 export const restaurantTransform = ({results = []}) => {
   const mappedResult = results.map(restaurant => {
-    restaurant.photos = restaurant.photos.map(p => {
-      return mockImages[Math.ceil(Math.random() * (mockImages.length - 1))];
-    });
     return {
       ...restaurant,
       address: restaurant.vicinity,

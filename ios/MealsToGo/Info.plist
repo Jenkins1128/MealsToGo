@@ -72,5 +72,14 @@
 		<string>Zocial.ttf</string>
 		<string>Fontisto.ttf</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>Allow $(PRODUCT_NAME) to use the camera</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+	<key>NSExceptionMinimumTLSVersion</key>
+	<string>TLSv1.0</string>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>

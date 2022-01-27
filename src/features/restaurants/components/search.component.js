@@ -25,7 +25,6 @@ export const Search = ({isFavoritesToggled, onFavoritesToggle}) => {
         onChangeText={text => {
           setSearchKeyword(text);
           // console.log(text);
-          search(text);
         }}
         onSubmitEditing={() => {
           search(searchKeyword);

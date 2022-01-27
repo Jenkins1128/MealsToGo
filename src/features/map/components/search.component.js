@@ -28,7 +28,6 @@ export const Search = () => {
         onChangeText={text => {
           setSearchKeyword(text);
           //console.log(text);
-          search(text);
         }}
         onSubmitEditing={() => {
           search(searchKeyword);

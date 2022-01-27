@@ -10,7 +10,6 @@ import {Text} from '../../../components/typography/text.component';
 import {
   RestaurantCard,
   RestaurantCardCover,
-  Address,
   Info,
   Rating,
   Section,
@@ -66,7 +65,7 @@ export const RestaurantInfoCard = ({restaurant = {}}) => {
             </Spacer>
           </SectionEnd>
         </Section>
-        <Address>{address}</Address>
+        <Text variant="caption">{address}</Text>
       </Info>
     </RestaurantCard>
   );

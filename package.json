@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
+    "android clean": "cd android && ./gradlew clean",
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
@@ -13,9 +14,11 @@
     "@react-native-async-storage/async-storage": "^1.15.14",
     "@react-native-firebase/app": "^14.2.2",
     "@react-native-firebase/auth": "^14.2.2",
+    "@react-native-firebase/functions": "^14.2.3",
     "@react-navigation/bottom-tabs": "^6.0.9",
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/stack": "^6.0.11",
+    "axios": "^0.25.0",
     "camelize": "^1.0.0",
     "lottie-ios": "3.2.3",
     "lottie-react-native": "^5.0.1",
@@ -28,6 +31,7 @@
     "react-native-screens": "^3.10.1",
     "react-native-svg": "^12.1.1",
     "react-native-vector-icons": "^9.0.0",
+    "react-native-vision-camera": "^2.12.0",
     "react-native-webview": "^11.16.0",
     "styled-components": "^5.3.3"
   },
