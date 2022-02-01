@@ -1,5 +1,7 @@
 import React, {useContext, useState, useEffect} from 'react';
 import {ScrollView} from 'react-native';
+import {useConfirmPayment} from '@stripe/stripe-react-native';
+
 import {Text} from '../../../components/typography/text.component';
 import {Spacer} from '../../../components/spacer/spacer.component';
 import {SafeArea} from '../../../components/utility/safe-area.component';
@@ -12,13 +14,25 @@ import {
   NameInput,
   PayButton,
   ClearButton,
+  PaymentProcessing,
 } from '../components/checkout.styles';
 import {RestaurantInfoCard} from '../../restaurants/components/restaurant-info-card.component';
 import {List} from 'react-native-paper';
+import {payRequest} from '../../../services/checkout/checkout.service';
 
 export const CheckoutScreen = () => {
   const {cart, restaurant, sum, clearCart} = useContext(CartContext);
   const [name, setName] = useState('');
+  const [card, setCard] = useState(null);
+  const {confirmPayment, loading} = useConfirmPayment();
+
+  const onPay = () => {
+    if (!card) {
+      console.log('some error');
+      return;
+    }
+    payRequest(name, sum, confirmPayment);
+  };
 
   if (!cart.length || !restaurant) {
     return (
@@ -34,6 +48,7 @@ export const CheckoutScreen = () => {
   return (
     <SafeArea>
       <RestaurantInfoCard restaurant={restaurant} />
+      {loading && <PaymentProcessing />}
       <ScrollView>
         <Spacer position="left" size="medium">
           <Spacer position="top" size="large">
@@ -53,16 +68,21 @@ export const CheckoutScreen = () => {
             setName(t);
           }}
         />
-        {name.length > 0 && <CreditCardInput name={name} />}
+        {name.length > 0 && <CreditCardInput name={name} onSuccess={setCard} />}
         <Spacer position="top" size="xxl" />
         <PayButton
+          disabled={loading}
           icon="cash-usd"
           mode="contained"
-          onPress={() => console.log('pay now')}>
+          onPress={onPay}>
           Pay
         </PayButton>
         <Spacer position="top" size="large">
-          <ClearButton icon="cart-off" mode="contained" onPress={clearCart}>
+          <ClearButton
+            disabled={loading}
+            icon="cart-off"
+            mode="contained"
+            onPress={clearCart}>
             Clear Cart
           </ClearButton>
         </Spacer>

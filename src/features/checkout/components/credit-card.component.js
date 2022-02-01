@@ -1,19 +1,14 @@
 import React from 'react';
 //import {LiteCreditCardInput} from 'react-native-credit-card-input';
-import {CardField, useStripe} from '@stripe/stripe-react-native';
-export const CreditCardInput = ({name}) => {
-  // const onChange = formData => {
-  //   const {values, status} = formData;
-  //   const isIncomplete = Object.values(status).includes('incomplete');
-  //   const card = {
-  //     number: '42424242',
-  //     expMonth: '02',
-  //     expYear: '24',
-  //     cvc: '244',
-  //     name: 'Mo',
-  //   };
-
-  // };
+import {CardField} from '@stripe/stripe-react-native';
+export const CreditCardInput = ({name, onSuccess}) => {
+  const onCardChange = cardDetails => {
+    console.log('cardDetails', cardDetails);
+    const isComplete = cardDetails.complete;
+    if (isComplete) {
+      onSuccess(cardDetails);
+    }
+  };
 
   return (
     <CardField
@@ -30,9 +25,7 @@ export const CreditCardInput = ({name}) => {
         height: 50,
         marginVertical: 30,
       }}
-      onCardChange={cardDetails => {
-        console.log('cardDetails', cardDetails);
-      }}
+      onCardChange={onCardChange}
       onFocus={focusedField => {
         console.log('focusField', focusedField);
       }}

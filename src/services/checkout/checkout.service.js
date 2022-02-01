@@ -1,16 +1,38 @@
-const API_URL = '';
+import {host} from '../../utils/env';
+import axios from 'axios';
 
-export const fetchPaymentIntentClientSecret = async () => {
-  const response = await fetch(`${API_URL}/create-payment-intent`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
+export const fetchPaymentIntentClientSecret = async amount => {
+  try {
+    const response = await axios.post(`${host}/pay`, {
       currency: 'usd',
-    }),
-  });
-  const {clientSecret} = await response.json();
+      amount,
+    });
+    const {clientSecret} = response.data;
+    return clientSecret;
+  } catch (error) {
+    return error;
+  }
+};
 
-  return clientSecret;
+export const payRequest = async (name, amount, confirmPayment) => {
+  const billingDetails: BillingDetails = {
+    name: name,
+  };
+  // Fetch the intent client secret from the backend
+  try {
+    const clientSecret = await fetchPaymentIntentClientSecret(amount);
+    console.log(clientSecret);
+
+    // Confirm the payment with the card details
+    const {paymentIntent, error} = await confirmPayment(clientSecret, {
+      type: 'Card',
+      billingDetails,
+    });
+
+    if (error) {
+      console.log('Payment confirmation error', error);
+    } else if (paymentIntent) {
+      console.log('Success from promise', paymentIntent);
+    }
+  } catch (error) {}
 };
