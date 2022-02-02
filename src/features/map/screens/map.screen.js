@@ -14,7 +14,6 @@ const Map = styled(MapView)`
 const RestaurantMap = ({navigation}) => {
   const {location} = useContext(LocationContext);
   const {restaurants = []} = useContext(RestaurantsContext);
-
   //for zooming on the map
   const [latDelta, setLatDelta] = useState(0);
 
@@ -35,7 +34,7 @@ const RestaurantMap = ({navigation}) => {
           latitude: lat,
           longitude: lng,
           latitudeDelta: latDelta,
-          longitudeDelta: 0.02,
+          longitudeDelta: 0.01,
         }}>
         {restaurants.map(restaurant => {
           return (

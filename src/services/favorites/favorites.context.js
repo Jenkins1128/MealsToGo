@@ -8,6 +8,18 @@ export const FavoritesContextProvider = ({children}) => {
   const {user} = useContext(AuthenticationContext);
   const [favorites, setFavorites] = useState([]);
 
+  useEffect(() => {
+    if (user && user.uid) {
+      loadFavorites(user.uid);
+    }
+  }, [user]);
+
+  useEffect(() => {
+    if (user && user.uid && favorites.length) {
+      saveFavorites(favorites, user.uid);
+    }
+  }, [favorites, user]);
+
   const saveFavorites = async (value, uid) => {
     try {
       const jsonValue = JSON.stringify(value);
@@ -39,18 +51,6 @@ export const FavoritesContextProvider = ({children}) => {
 
     setFavorites(newFavorites);
   };
-
-  useEffect(() => {
-    if (user && user.uid) {
-      loadFavorites(user.uid);
-    }
-  }, [user]);
-
-  useEffect(() => {
-    if (user && user.uid && favorites.length) {
-      saveFavorites(favorites, user.uid);
-    }
-  }, [favorites, user]);
 
   return (
     <FavoritesContext.Provider

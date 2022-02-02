@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, {useContext, useState} from 'react';
 import {ScrollView} from 'react-native';
 import {useConfirmPayment} from '@stripe/stripe-react-native';
 
@@ -17,21 +17,35 @@ import {
   PaymentProcessing,
 } from '../components/checkout.styles';
 import {RestaurantInfoCard} from '../../restaurants/components/restaurant-info-card.component';
-import {List} from 'react-native-paper';
+import {List, Divider} from 'react-native-paper';
 import {payRequest} from '../../../services/checkout/checkout.service';
 
-export const CheckoutScreen = () => {
+export const CheckoutScreen = ({navigation}) => {
   const {cart, restaurant, sum, clearCart} = useContext(CartContext);
   const [name, setName] = useState('');
   const [card, setCard] = useState(null);
   const {confirmPayment, loading} = useConfirmPayment();
 
-  const onPay = () => {
+  const onPay = async () => {
     if (!card) {
       console.log('some error');
+      navigation.navigate('CheckoutError', {
+        error: 'Please fill in a valid credit card',
+      });
       return;
     }
-    payRequest(name, sum, confirmPayment);
+
+    try {
+      await payRequest(name, sum, confirmPayment);
+      clearCart();
+      navigation.navigate('CheckoutSuccess', {
+        error: 'Please fill in a valid credit card',
+      });
+    } catch (error) {
+      navigation.navigate('CheckoutError', {
+        error: 'Something went wrong processing your credit card',
+      });
+    }
   };
 
   if (!cart.length || !restaurant) {
@@ -55,12 +69,19 @@ export const CheckoutScreen = () => {
             <Text>Your Order</Text>
           </Spacer>
           <List.Section>
-            {cart.map(({item, price}) => {
-              return <List.Item title={`${item} - ${price / 100}`} />;
+            {cart.map(({item, price}, i) => {
+              return (
+                <List.Item
+                  key={`item-${i}`}
+                  title={`${item} - ${price / 100}`}
+                />
+              );
             })}
           </List.Section>
           <Text>Total: {sum / 100}</Text>
         </Spacer>
+        <Spacer position="top" size="large" />
+        <Divider />
         <NameInput
           label="Name"
           value={name}

@@ -6,11 +6,17 @@ import {restaurantsRequest, restaurantTransform} from './restaurants.service';
 export const RestaurantsContext = createContext();
 
 export const RestaurantsContextProvider = ({children}) => {
+  const {location} = useContext(LocationContext);
   const [restaurants, setRestaurants] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const {location} = useContext(LocationContext);
+  useEffect(() => {
+    if (location) {
+      const locationString = `${location.lat},${location.lng}`;
+      retrieveRestaurants(locationString);
+    }
+  }, [location]);
 
   const retrieveRestaurants = loc => {
     setIsLoading(true);
@@ -28,13 +34,6 @@ export const RestaurantsContextProvider = ({children}) => {
         setError(err);
       });
   };
-
-  useEffect(() => {
-    if (location) {
-      const locationString = `${location.lat},${location.lng}`;
-      retrieveRestaurants(locationString);
-    }
-  }, [location]);
 
   return (
     <RestaurantsContext.Provider

@@ -9,6 +9,11 @@ export const AuthenticationContextProvider = ({children}) => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
 
+  useEffect(() => {
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    return subscriber; // unsubscribe on unmount
+  }, []);
+
   const onAuthStateChanged = usr => {
     console.log('onAuthStateChanged', usr);
     if (usr) {
@@ -57,11 +62,6 @@ export const AuthenticationContextProvider = ({children}) => {
         setError(e.toString());
       });
   };
-
-  useEffect(() => {
-    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    return subscriber; // unsubscribe on unmount
-  }, []);
 
   return (
     <AuthenticationContext.Provider

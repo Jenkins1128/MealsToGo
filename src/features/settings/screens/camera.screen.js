@@ -14,22 +14,12 @@ const ProfileCamera = styled(Camera)`
 `;
 
 export const CameraScreen = ({navigation}) => {
-  const [hasPermission, setHasPermission] = useState(null);
-  const devices = useCameraDevices();
-  const device = devices.front;
-  const cameraRef = useRef();
-
   const {user} = useContext(AuthenticationContext);
+  const [hasPermission, setHasPermission] = useState(null);
+  const cameraRef = useRef();
+  const devices = useCameraDevices();
 
-  const snap = async () => {
-    if (cameraRef) {
-      const photo = await cameraRef.current.takePhoto({
-        flash: 'off',
-      });
-      AsyncStorage.setItem(`${user.uid}-photo`, photo.path);
-      navigation.goBack();
-    }
-  };
+  const device = devices.front;
 
   useEffect(() => {
     (async () => {
@@ -41,6 +31,16 @@ export const CameraScreen = ({navigation}) => {
       setHasPermission(cameraPermission);
     })();
   }, []);
+
+  const snap = async () => {
+    if (cameraRef) {
+      const photo = await cameraRef.current.takePhoto({
+        flash: 'off',
+      });
+      AsyncStorage.setItem(`${user.uid}-photo`, photo.path);
+      navigation.goBack();
+    }
+  };
 
   if (device == null || hasPermission === null) {
     return <View />;
@@ -56,7 +56,8 @@ export const CameraScreen = ({navigation}) => {
         ref={cameraRef}
         device={device}
         isActive={true}
-        photo={true}></ProfileCamera>
+        photo={true}
+      />
     </TouchableOpacity>
   );
 };
