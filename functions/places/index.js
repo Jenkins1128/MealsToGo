@@ -18,18 +18,35 @@ const addGoogleImage = restaurant => {
   return restaurant;
 };
 
-module.exports.placesRequest = (request, response, client) => {
+module.exports.placesRequest = async (request, response, client) => {
   const {location, mock} = url.parse(request.url, true).query;
   if (mock === 'true') {
     const data = mocks[location];
     if (data) {
       data.results = data.results.map(addMockImage);
     }
-    console.log('mock placesRequest', data);
     return response.json(data);
   }
-  client
-    .placesNearby({
+  // client
+  //   .placesNearby({
+  //     params: {
+  //       location: location,
+  //       radius: 1000,
+  //       type: 'restaurant',
+  //       key: functions.config().google.key,
+  //     },
+  //     timeout: 1000,
+  //   })
+  //   .then(res => {
+  //     res.data.results = res.data.results.map(addMockImage);
+  //     return response.json(res.data);
+  //   })
+  //   .catch(e => {
+  //     response.status(400);
+  //     return response.send(e.response.data.error_message);
+  //   });
+  try {
+    const res = await client.placesNearby({
       params: {
         location: location,
         radius: 1000,
@@ -37,13 +54,11 @@ module.exports.placesRequest = (request, response, client) => {
         key: functions.config().google.key,
       },
       timeout: 1000,
-    })
-    .then(res => {
-      res.data.results = res.data.results.map(addMockImage);
-      return response.json(res.data);
-    })
-    .catch(e => {
-      response.status(400);
-      return response.send(e.response.data.error_message);
     });
+    res.data.results = res.data.results.map(addMockImage);
+    return response.json(res.data);
+  } catch (e) {
+    response.status(400);
+    return response.send(e.response.data.error_message);
+  }
 };

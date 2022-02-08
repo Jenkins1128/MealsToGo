@@ -28,7 +28,6 @@ export const CheckoutScreen = ({navigation}) => {
 
   const onPay = async () => {
     if (!card) {
-      console.log('some error');
       navigation.navigate('CheckoutError', {
         error: 'Please fill in a valid credit card',
       });

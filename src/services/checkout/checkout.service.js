@@ -31,7 +31,6 @@ export const payRequest = async (name, amount, confirmPayment) => {
     if (error) {
       return Promise.reject('Payment confirmation error', error);
     } else if (paymentIntent) {
-      console.log('Success from promise', paymentIntent);
       return paymentIntent;
     }
   } catch (error) {

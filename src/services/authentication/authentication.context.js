@@ -15,7 +15,6 @@ export const AuthenticationContextProvider = ({children}) => {
   }, []);
 
   const onAuthStateChanged = usr => {
-    console.log('onAuthStateChanged', usr);
     if (usr) {
       setUser(usr);
       setIsLoading(false);
@@ -24,43 +23,59 @@ export const AuthenticationContextProvider = ({children}) => {
     }
   };
 
-  const onLogin = (email, password) => {
+  const onLogin = async (email, password) => {
     setIsLoading(true);
-    loginRequest(email, password)
-      .then(() => {
-        console.log('logged in');
-      })
-      .catch(e => {
-        setIsLoading(false);
-        setError(e.toString());
-      });
+    // loginRequest(email, password)
+    //   .then(() => {
+    //     console.log('logged in');
+    //   })
+    //   .catch(e => {
+    //     setIsLoading(false);
+    //     setError(e.toString());
+    //   });
+
+    try {
+      await loginRequest(email, password);
+    } catch (e) {
+      setIsLoading(false);
+      setError(e.toString());
+    }
   };
 
-  const onLogout = () => {
+  const onLogout = async () => {
     setUser(null);
-    auth()
-      .signOut()
-      .then(() => console.log('User signed out!'))
-      .catch(e => {
-        console.log(e);
-      });
+    // auth()
+    //   .signOut()
+    //   .then(() => console.log('User signed out!'))
+    //   .catch(e => {
+    //     console.log(e);
+    //   });
+    try {
+      await auth().signOut();
+    } catch (e) {}
   };
 
-  const onRegister = (email, password, repeatedPassword) => {
+  const onRegister = async (email, password, repeatedPassword) => {
     setIsLoading(true);
     if (password !== repeatedPassword) {
       setError('Error: Passwords do no match');
       setIsLoading(false);
       return;
     }
-    registerRequest(email, password)
-      .then(() => {
-        console.log('registered');
-      })
-      .catch(e => {
-        setIsLoading(false);
-        setError(e.toString());
-      });
+    // registerRequest(email, password)
+    //   .then(() => {
+    //     console.log('registered');
+    //   })
+    //   .catch(e => {
+    //     setIsLoading(false);
+    //     setError(e.toString());
+    //   });
+    try {
+      await registerRequest(email, password);
+    } catch (e) {
+      setIsLoading(false);
+      setError(e.toString());
+    }
   };
 
   return (

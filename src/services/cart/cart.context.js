@@ -35,12 +35,9 @@ export const CartContextProvider = ({children}) => {
   }, [cart]);
 
   const saveCart = async (rst, crt, uid) => {
-    console.log('saved', uid);
     try {
       const item = `@cart-${uid}`;
-      console.log(`saved it ${item}.`);
       const jsonValue = JSON.stringify({restaurant: rst, cart: crt});
-      console.log('saved', jsonValue);
       await AsyncStorage.setItem(item, jsonValue);
     } catch (e) {
       console.log('error storing', e);
@@ -50,14 +47,12 @@ export const CartContextProvider = ({children}) => {
   const loadCart = async uid => {
     try {
       const item = `@cart-${uid}`;
-      console.log(`loaded it ${item}.`);
       const value = await AsyncStorage.getItem(item);
       if (value !== null) {
         const {restaurant: rst, cart: crt} = JSON.parse(value);
         setRestaurant(rst);
         setCart(crt);
       }
-      console.log('loaded', value);
     } catch (error) {
       console.log('error loading', error);
     }

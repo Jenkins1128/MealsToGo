@@ -1,11 +1,7 @@
-import React, {useContext, useState, useCallback} from 'react';
-import {TouchableOpacity} from 'react-native';
+import React, {useContext} from 'react';
 import styled from 'styled-components/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {useFocusEffect} from '@react-navigation/native';
+import {List} from 'react-native-paper';
 
-import {List, Avatar} from 'react-native-paper';
-import {Text} from '../../../components/typography/text.component';
 import {Spacer} from '../../../components/spacer/spacer.component';
 import {SafeArea} from '../../../components/utility/safe-area.component';
 import {AuthenticationContext} from '../../../services/authentication/authentication.context';
@@ -28,49 +24,12 @@ const SettingsItem = styled(List.Item)`
   background-color: rgba(255, 255, 255, 0.4);
 `;
 
-const AvatarContainer = styled.View`
-  align-items: center;
-`;
-
 export const SettingsScreen = ({navigation}) => {
-  const {onLogout, user} = useContext(AuthenticationContext);
-  const [photo, setPhoto] = useState(null);
-
-  useFocusEffect(
-    useCallback(() => {
-      const getProfilePicture = async () => {
-        const photoUri = await AsyncStorage.getItem(`${user.uid}-photo`);
-        setPhoto(photoUri);
-      };
-      getProfilePicture(user);
-    }, [user]),
-  );
+  const {onLogout} = useContext(AuthenticationContext);
 
   return (
     <SettingsBackground>
       <TransparentSafeArea>
-        <AvatarContainer>
-          <TouchableOpacity onPress={() => navigation.navigate('Camera')}>
-            {!photo && (
-              <Avatar.Icon
-                size={180}
-                icon="human"
-                backgroundColor={colors.brand.primary}
-              />
-            )}
-            {photo && (
-              <Avatar.Image
-                size={180}
-                source={{uri: photo}}
-                backgroundColor="#2182BD"
-              />
-            )}
-          </TouchableOpacity>
-
-          <Spacer position="top" size="large">
-            <Text variant="label">{user.email}</Text>
-          </Spacer>
-        </AvatarContainer>
         <List.Section>
           <SettingsItem
             title="Favourites"

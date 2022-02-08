@@ -12,7 +12,7 @@ export const CheckoutNavigator = () => (
     screenOptions={{
       headerMode: 'none',
     }}>
-    <CheckoutStack.Screen name="Checkout" component={CheckoutScreen} />
+    <CheckoutStack.Screen name="CheckoutScreen" component={CheckoutScreen} />
     <CheckoutStack.Screen
       name="CheckoutSuccess"
       component={CheckoutSuccessScreen}

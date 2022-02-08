@@ -18,21 +18,32 @@ export const RestaurantsContextProvider = ({children}) => {
     }
   }, [location]);
 
-  const retrieveRestaurants = loc => {
+  const retrieveRestaurants = async loc => {
     setIsLoading(true);
     setRestaurants([]);
 
-    restaurantsRequest(loc)
-      .then(restaurantTransform)
-      .then(results => {
-        setError(null);
-        setIsLoading(false);
-        setRestaurants(results);
-      })
-      .catch(err => {
-        setIsLoading(false);
-        setError(err);
-      });
+    // restaurantsRequest(loc)
+    //   .then(restaurantTransform)
+    //   .then(results => {
+    //     setError(null);
+    //     setIsLoading(false);
+    //     setRestaurants(results);
+    //   })
+    //   .catch(err => {
+    //     setIsLoading(false);
+    //     setError(err);
+    //   });
+
+    try {
+      const res = await restaurantsRequest(loc);
+      const results = restaurantTransform(res);
+      setError(null);
+      setIsLoading(false);
+      setRestaurants(results);
+    } catch (e) {
+      setIsLoading(false);
+      setError(e);
+    }
   };
 
   return (

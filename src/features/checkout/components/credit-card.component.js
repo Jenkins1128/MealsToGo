@@ -1,9 +1,8 @@
 import React from 'react';
-//import {LiteCreditCardInput} from 'react-native-credit-card-input';
 import {CardField} from '@stripe/stripe-react-native';
+
 export const CreditCardInput = ({name, onSuccess}) => {
   const onCardChange = cardDetails => {
-    console.log('cardDetails', cardDetails);
     const isComplete = cardDetails.complete;
     if (isComplete) {
       onSuccess(cardDetails);
@@ -19,6 +18,7 @@ export const CreditCardInput = ({name, onSuccess}) => {
       cardStyle={{
         backgroundColor: '#FFFFFF',
         textColor: '#000000',
+        placeholderColor: '#cccccc',
       }}
       style={{
         width: '100%',
@@ -26,9 +26,6 @@ export const CreditCardInput = ({name, onSuccess}) => {
         marginVertical: 30,
       }}
       onCardChange={onCardChange}
-      onFocus={focusedField => {
-        console.log('focusField', focusedField);
-      }}
     />
   );
 };

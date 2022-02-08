@@ -3,7 +3,6 @@ import axios from 'axios';
 import {host, isMock} from '../../utils/env';
 
 export const restaurantsRequest = async location => {
-  console.log('location', location);
   try {
     const res = await axios.get(
       `${host}/placesNearby?location=${location}&mock=${isMock}`,
