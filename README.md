@@ -19,3 +19,4 @@ A food app that allows you to search for food places near you utilizing the goog
 - Google Cloud Places API
 - Google Cloud Geocoding API
 - Stripe API
+- Lottie animation
