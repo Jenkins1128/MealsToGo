@@ -33,7 +33,6 @@ export const CheckoutScreen = ({navigation}) => {
       });
       return;
     }
-
     try {
       await payRequest(name, sum, confirmPayment);
       clearCart();

@@ -21,13 +21,11 @@ export const payRequest = async (name, amount, confirmPayment) => {
   // Fetch the intent client secret from the backend
   try {
     const clientSecret = await fetchPaymentIntentClientSecret(amount);
-
     // Confirm the payment with the card details
     const {paymentIntent, error} = await confirmPayment(clientSecret, {
       type: 'Card',
       billingDetails,
     });
-
     if (error) {
       return Promise.reject('Payment confirmation error', error);
     } else if (paymentIntent) {

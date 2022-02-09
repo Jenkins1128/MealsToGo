@@ -10,13 +10,12 @@ import {OrderButton} from '../components/restaurant-list.styles';
 import {CartContext} from '../../../services/cart/cart.context';
 
 export const RestaurantDetailScreen = ({navigation, route}) => {
+  const {addToCart} = useContext(CartContext);
   const [breakfastExpanded, setBreakfastExpanded] = useState(false);
   const [lunchExpanded, setLunchExpanded] = useState(false);
   const [dinnerExpanded, setDinnerExpanded] = useState(false);
   const [drinksExpanded, setDrinksExpanded] = useState(false);
-
   const {restaurant} = route.params;
-  const {addToCart} = useContext(CartContext);
 
   return (
     <SafeArea>

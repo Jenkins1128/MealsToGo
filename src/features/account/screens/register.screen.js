@@ -14,10 +14,10 @@ import {AuthenticationContext} from '../../../services/authentication/authentica
 import {ActivityIndicator, Colors} from 'react-native-paper';
 
 export const RegisterScreen = ({navigation}) => {
+  const {onRegister, isLoading, error} = useContext(AuthenticationContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatedPassword, setRepeatedPassword] = useState('');
-  const {onRegister, isLoading, error} = useContext(AuthenticationContext);
 
   return (
     <AccountBackground>

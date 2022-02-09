@@ -16,13 +16,11 @@ const RestaurantMap = ({navigation}) => {
   const {restaurants = []} = useContext(RestaurantsContext);
   //for zooming on the map
   const [latDelta, setLatDelta] = useState(0);
-
   const {viewport, lat, lng} = location;
 
   useEffect(() => {
     const northeastLat = viewport.northeast.lat;
     const southwestLat = viewport.southwest.lat;
-
     setLatDelta(northeastLat - southwestLat);
   }, [location, viewport]);
 

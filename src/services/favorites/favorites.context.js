@@ -48,7 +48,6 @@ export const FavoritesContextProvider = ({children}) => {
     const newFavorites = favorites.filter(
       x => x.placeId !== restaurant.placeId,
     );
-
     setFavorites(newFavorites);
   };
 

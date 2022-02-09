@@ -7,6 +7,7 @@ About: A food app that allows you to search for food places near you utilizing t
 ## Technologies
 
 - Context
+- Styled components
 - React Native Paper
 - Maps
 - Navigation
