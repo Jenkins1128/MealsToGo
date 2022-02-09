@@ -25,15 +25,6 @@ export const AuthenticationContextProvider = ({children}) => {
 
   const onLogin = async (email, password) => {
     setIsLoading(true);
-    // loginRequest(email, password)
-    //   .then(() => {
-    //     console.log('logged in');
-    //   })
-    //   .catch(e => {
-    //     setIsLoading(false);
-    //     setError(e.toString());
-    //   });
-
     try {
       await loginRequest(email, password);
     } catch (e) {
@@ -44,12 +35,6 @@ export const AuthenticationContextProvider = ({children}) => {
 
   const onLogout = async () => {
     setUser(null);
-    // auth()
-    //   .signOut()
-    //   .then(() => console.log('User signed out!'))
-    //   .catch(e => {
-    //     console.log(e);
-    //   });
     try {
       await auth().signOut();
     } catch (e) {}
@@ -62,14 +47,6 @@ export const AuthenticationContextProvider = ({children}) => {
       setIsLoading(false);
       return;
     }
-    // registerRequest(email, password)
-    //   .then(() => {
-    //     console.log('registered');
-    //   })
-    //   .catch(e => {
-    //     setIsLoading(false);
-    //     setError(e.toString());
-    //   });
     try {
       await registerRequest(email, password);
     } catch (e) {

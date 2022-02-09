@@ -14,18 +14,6 @@ export const LocationContextProvider = ({children}) => {
     if (!keyword.length) {
       return;
     }
-    // locationRequest(keyword.toLowerCase().trim())
-    //   .then(locationTransform)
-    //   .then(result => {
-    //     setError(null);
-    //     setIsLoading(false);
-    //     setLocation(result);
-    //     //console.log(result);
-    //   })
-    //   .catch(err => {
-    //     setIsLoading(false);
-    //     setError(err);
-    //   });
     const requestLocation = async () => {
       try {
         const res = await locationRequest(keyword.toLowerCase().trim());

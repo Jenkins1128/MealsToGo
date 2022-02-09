@@ -27,24 +27,6 @@ module.exports.placesRequest = async (request, response, client) => {
     }
     return response.json(data);
   }
-  // client
-  //   .placesNearby({
-  //     params: {
-  //       location: location,
-  //       radius: 1000,
-  //       type: 'restaurant',
-  //       key: functions.config().google.key,
-  //     },
-  //     timeout: 1000,
-  //   })
-  //   .then(res => {
-  //     res.data.results = res.data.results.map(addMockImage);
-  //     return response.json(res.data);
-  //   })
-  //   .catch(e => {
-  //     response.status(400);
-  //     return response.send(e.response.data.error_message);
-  //   });
   try {
     const res = await client.placesNearby({
       params: {
