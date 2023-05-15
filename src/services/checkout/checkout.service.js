@@ -23,7 +23,7 @@ export const payRequest = async (name, amount, confirmPayment) => {
     const clientSecret = await fetchPaymentIntentClientSecret(amount);
     // Confirm the payment with the card details
     const {paymentIntent, error} = await confirmPayment(clientSecret, {
-      type: 'Card',
+      paymentMethodType: 'Card',
       billingDetails,
     });
     if (error) {

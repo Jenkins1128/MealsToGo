@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:58334698880:android:ba51df141bd816a1a53565",
+        "mobilesdk_app_id": "1:58334698880:android:fe0d8865389fe2c9a53565",
         "android_client_info": {
-          "package_name": "com.mealstogo"
+          "package_name": "com.isaiah_jenkins.MealsToGo"
         }
       },
       "oauth_client": [
@@ -20,7 +20,7 @@
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDAdsuC0HUZ3LENCThPcwSE6W-C_jAdVBs"
+          "current_key": "AIzaSyDIQORfQND_leH7rZn9OAfqj_qwlO3ClaQ"
         }
       ],
       "services": {
@@ -29,6 +29,13 @@
             {
               "client_id": "58334698880-0qaujcdsn802topimhpcsj22rnge5b1n.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "58334698880-6euub6rcu567bmd2goiqmc4j5feemkav.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.MealsToGo"
+              }
             }
           ]
         }

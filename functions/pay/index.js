@@ -5,7 +5,9 @@ module.exports.payRequest = async (request, response, stripeClient) => {
       amount,
       currency: 'usd',
       payment_method_types: ['card'],
+      payment_method: "pm_card_visa"
     });
+    
     // Send publishable key and PaymentIntent details to client
     response.send({
       clientSecret: paymentIntent.client_secret,
