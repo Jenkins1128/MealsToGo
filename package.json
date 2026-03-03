@@ -8,7 +8,8 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.18.1",
@@ -23,6 +24,8 @@
     "camelize": "^1.0.1",
     "lottie-ios": "3.4.0",
     "lottie-react-native": "^5.1.5",
+    "patch-package": "^8.0.1",
+    "postinstall-postinstall": "^2.1.0",
     "react": "^18.2.0",
     "react-native": "^0.71.8",
     "react-native-eject": "^0.2.0",

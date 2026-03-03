@@ -5,30 +5,58 @@ platform :ios, '16.0'
 
 target 'MealsToGo' do
   config = use_native_modules!
-  
+
   use_frameworks! :linkage => :static
   $RNFirebaseAsStaticFramework = true
-  
+
   use_react_native!(
     :path => config[:reactNativePath],
-    # to enable hermes on iOS, change `false` to `true` and then install pods
     :hermes_enabled => false
   )
 
-
   target 'MealsToGoTests' do
     inherit! :complete
-    # Pods for testing
   end
-
-  # Enables Flipper.
-  #
-  # Note that if you have use_frameworks! enabled, Flipper will not work and
-  # you should disable the next line.
-   #use_flipper!({ 'Flipper' => '0.187.0' })
 
   post_install do |installer|
     react_native_post_install(installer)
     __apply_Xcode_12_5_M1_post_install_workaround(installer)
+
+    # This loop is more robust as it iterates through every actual Xcode project generated
+    installer.generated_projects.each do |project|
+      project.targets.each do |target|
+        target.build_configurations.each do |config|
+          # Disable the sandbox restriction for all targets
+          config.build_settings['ENABLE_USER_SCRIPT_SANDBOXING'] = 'NO'
+          
+          # This forces EVERYTHING in the Pods project to iOS 16.0
+          config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '16.0'
+
+          # 2. Re-enable removed C++ functions (Crucial for Folly/Boost)
+          config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= ['$(inherited)', '_LIBCPP_ENABLE_CXX17_REMOVED_UNARY_BINARY_FUNCTION']
+
+          # Force C++17 to fix the 'unary_function' error
+          config.build_settings['CLANG_CXX_LANGUAGE_STANDARD'] = 'c++17'
+          config.build_settings['CLANG_C_LANGUAGE_STANDARD'] = 'gnu17'
+        end
+
+        if target.name == 'RCT-Folly'
+          target.build_configurations.each do |config|
+            # The Enforcer: Disabling Modules for Folly specifically
+            config.build_settings['CLANG_ENABLE_MODULES'] = 'NO'
+          end
+        end
+
+        # This part handles the "Based on dependency analysis" script warnings
+        target.build_phases.each do |phase|
+          if phase.respond_to?(:name) &&
+            (phase.name == 'Create Symlinks to Header Folders' ||
+              phase.name == 'Start Packager' ||
+              phase.name == 'Bundle React Native code and images')
+            phase.always_out_of_date = '1'
+          end
+        end
+      end
+    end
   end
 end
