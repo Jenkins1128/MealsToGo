@@ -1,0 +1,74 @@
+[debug] [2026-03-04T07:04:52.295Z] ----------------------------------------------------------------------
+[debug] [2026-03-04T07:04:52.297Z] Command:       /opt/homebrew/Cellar/node/24.4.1/bin/node /opt/homebrew/bin/firebase init
+[debug] [2026-03-04T07:04:52.297Z] CLI Version:   15.8.0
+[debug] [2026-03-04T07:04:52.297Z] Platform:      darwin
+[debug] [2026-03-04T07:04:52.297Z] Node Version:  v24.4.1
+[debug] [2026-03-04T07:04:52.297Z] Time:          Tue Mar 03 2026 23:04:52 GMT-0800 (Pacific Standard Time)
+[debug] [2026-03-04T07:04:52.297Z] ----------------------------------------------------------------------
+[debug] 
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /Users/isaiahjenkins/Documents/MealsToGo
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] 
+[debug] [2026-03-04T07:04:56.522Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-03-04T07:04:56.523Z] > authorizing via signed-in user (ij27900@gmail.com)
+[debug] [2026-03-04T07:04:56.524Z] Checked if tokens are valid: true, expires at: 1772611241660
+[debug] [2026-03-04T07:04:56.524Z] Checked if tokens are valid: true, expires at: 1772611241660
+[debug] [2026-03-04T07:04:56.525Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/mealstogo-52272 [none]
+[debug] [2026-03-04T07:04:56.829Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/mealstogo-52272 200
+[debug] [2026-03-04T07:04:56.829Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/mealstogo-52272 {"projectId":"mealstogo-52272","projectNumber":"58334698880","displayName":"MealsToGo","name":"projects/mealstogo-52272","resources":{"hostingSite":"mealstogo-52272"},"state":"ACTIVE","etag":"1_854e00e0-6a14-429e-a083-2e9748da3562"}
+[info] i  Using project mealstogo-52272 (MealsToGo) . 
+[info] 
+=== Functions Setup
+[debug] [2026-03-04T07:04:56.842Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-03-04T07:04:56.842Z] > authorizing via signed-in user (ij27900@gmail.com)
+[debug] [2026-03-04T07:04:56.842Z] [iam] checking project mealstogo-52272 for permissions ["firebase.projects.get"]
+[debug] [2026-03-04T07:04:56.843Z] Checked if tokens are valid: true, expires at: 1772611241660
+[debug] [2026-03-04T07:04:56.843Z] Checked if tokens are valid: true, expires at: 1772611241660
+[debug] [2026-03-04T07:04:56.843Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/mealstogo-52272:testIamPermissions [none]
+[debug] [2026-03-04T07:04:56.843Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/mealstogo-52272:testIamPermissions  x-goog-user-project=mealstogo-52272
+[debug] [2026-03-04T07:04:56.843Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/mealstogo-52272:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2026-03-04T07:04:57.111Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/mealstogo-52272:testIamPermissions 200
+[debug] [2026-03-04T07:04:57.111Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/mealstogo-52272:testIamPermissions {"permissions":["firebase.projects.get"]}
+[info] 
+Detected existing codebase(s): default
+
+[info] Let's create a new codebase for your functions.
+[info] A directory corresponding to the codebase will be created in your project
+[info] with sample code pre-configured.
+
+[info] See https://firebase.google.com/docs/functions/organize-functions for
+[info] more information on organizing your functions using codebases.
+
+[info] Functions can be deployed with firebase deploy.
+
+[debug] [2026-03-04T07:05:34.124Z] ExitPromptError: User force closed the prompt with SIGINT
+    at Interface.sigint (/opt/homebrew/lib/node_modules/firebase-tools/node_modules/@inquirer/core/dist/commonjs/lib/create-prompt.js:101:37)
+    at Interface.emit (node:events:507:28)
+    at [_ttyWrite] [as _ttyWrite] (node:internal/readline/interface:1315:18)
+    at ReadStream.onkeypress (node:internal/readline/interface:284:20)
+    at ReadStream.emit (node:events:519:35)
+    at emitKeys (node:internal/readline/utils:371:14)
+    at emitKeys.next (<anonymous>)
+    at ReadStream.onData (node:internal/readline/emitKeypressEvents:64:36)
+    at ReadStream.emit (node:events:507:28)
+    at addChunk (node:internal/streams/readable:559:12)
+[error] 
+[error] Error: An unexpected error has occurred.

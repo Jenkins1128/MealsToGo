@@ -1,8 +1,7 @@
 const {locations: locationsMock} = require('./geocode.mock');
 const url = require('url');
-const functions = require('firebase-functions');
 
-module.exports.geocodeRequest = async (request, response, client) => {
+module.exports.geocodeRequest = async (request, response, client, googleKey) => {
   const {city, mock} = url.parse(request.url, true).query;
   if (mock === 'true') {
     const locationMock = locationsMock[city.toLowerCase()];
@@ -12,7 +11,7 @@ module.exports.geocodeRequest = async (request, response, client) => {
     const res = await client.geocode({
       params: {
         address: city,
-        key: functions.config().google.key,
+        key: googleKey,
       },
       timeout: 1000,
     });

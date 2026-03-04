@@ -4,4 +4,4 @@ const liveHost = 'https://us-central1-mealstogo-52272.cloudfunctions.net';
 
 export const isMock = false;
 export const isDevelopment = process.env.NODE_ENV === 'development';
-export const host = liveHost;
+export const host = false ? localHost : liveHost;

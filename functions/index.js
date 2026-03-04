@@ -1,20 +1,32 @@
-const functions = require('firebase-functions');
 const {geocodeRequest} = require('./geocode');
 const {placesRequest} = require('./places');
 const {payRequest} = require('./pay');
 
 const {Client} = require('@googlemaps/google-maps-services-js');
 const googleClient = new Client({});
-const stripeClient = require('stripe')(functions.config().stripe.key);
+const { defineJsonSecret } = require("firebase-functions/params");
+const config = defineJsonSecret("RUNTIME_CONFIG");
+const { onRequest } = require("firebase-functions/v2/https");
 
-exports.geocode = functions.https.onRequest((request, response) => {
-  geocodeRequest(request, response, googleClient);
+exports.geocode = onRequest(
+  { secrets: [config] },
+  (request, response) => {
+  const googleKey = config.value().google.key;
+  geocodeRequest(request, response, googleClient, googleKey);
 });
 
-exports.placesNearby = functions.https.onRequest((request, response) => {
-  placesRequest(request, response, googleClient);
+exports.placesNearby = onRequest(
+  { secrets: [config] },
+  (request, response) => {
+  const googleKey = config.value().google.key;
+  console.log('places nearby google key', googleKey);
+  placesRequest(request, response, googleClient, googleKey);
 });
 
-exports.pay = functions.https.onRequest((request, response) => {
+exports.pay = onRequest(// Bind secret to your function
+  { secrets: [config] },
+  (request, response) => {
+  const stripeKey = config.value().stripe.key;
+  const stripeClient = require('stripe')(stripeKey);
   payRequest(request, response, stripeClient);
 });
