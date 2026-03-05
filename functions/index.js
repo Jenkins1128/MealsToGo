@@ -16,12 +16,8 @@ exports.geocode = onRequest(
     if (!process.env.RUNTIME_CONFIG) {
       throw new Error('RUNTIME_CONFIG secret is missing from environment');
     }
-
     const config = JSON.parse(process.env.RUNTIME_CONFIG);
-
-    // Using optional chaining (?.) prevents the "reading property of undefined" crash
     const googleKey = config?.GOOGLE_KEY;
-
     if (!googleKey) {
       return res.status(500).send('Google API Key not found in config');
     }
@@ -37,12 +33,8 @@ exports.placesNearby = onRequest(
     if (!process.env.RUNTIME_CONFIG) {
       throw new Error('RUNTIME_CONFIG secret is missing from environment');
     }
-
     const config = JSON.parse(process.env.RUNTIME_CONFIG);
-
-    // Using optional chaining (?.) prevents the "reading property of undefined" crash
     const googleKey = config?.GOOGLE_KEY;
-
     if (!googleKey) {
       return res.status(500).send('Google API Key not found in config');
     }
@@ -52,9 +44,16 @@ exports.placesNearby = onRequest(
 
 exports.pay = onRequest(
   // Bind secret to your function
-  {secrets: [config]},
+  {secrets: ['RUNTIME_CONFIG']},
   (request, response) => {
-    const stripeKey = config.value().stripe.key;
+     if (!process.env.RUNTIME_CONFIG) {
+      throw new Error('RUNTIME_CONFIG secret is missing from environment');
+    }
+    const config = JSON.parse(process.env.RUNTIME_CONFIG);
+    const stripeKey = config?.STRIPE_KEY;
+    if (!stripeKey) {
+      return res.status(500).send('Stripe API Key not found in config');
+    }
     const stripeClient = require('stripe')(stripeKey);
     payRequest(request, response, stripeClient);
   },
