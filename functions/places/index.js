@@ -22,7 +22,7 @@ module.exports.placesRequest = async (request, response, client, googleKey) => {
   if (mock === 'true') {
     const data = mocks[location];
     if (data) {
-      data.results = data.results.map(addGoogleImage);
+      data.results = data.results.map(addMockImage);
     }
     return response.json(data);
   }
@@ -36,7 +36,7 @@ module.exports.placesRequest = async (request, response, client, googleKey) => {
       },
       timeout: 1000,
     });
-    res.data.results = res.data.results.map(addMockImage);
+    res.data.results = res.data.results.map((restaurant) => addGoogleImage(restaurant, googleKey));
     return response.json(res.data);
   } catch (e) {
     response.status(400);
