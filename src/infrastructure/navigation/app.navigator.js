@@ -1,4 +1,5 @@
 import React from 'react';
+import Config from "react-native-config";
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {StripeProvider} from '@stripe/stripe-react-native';
@@ -41,7 +42,7 @@ export const AppNavigator = () => (
     <LocationContextProvider>
       <RestaurantsContextProvider>
         <CartContextProvider>
-          <StripeProvider publishableKey="pk_test_51KMdFbC4rLDQVhD8adxbNOCgIvej4WHteLyZJiQsweDEVUaBXs0HOwEja5GntVj0NdMXqmflm331zD0FPifNsH04000F5udQLI">
+          <StripeProvider publishableKey={`${Config.STRIPE_PUBLISHABLE_KEY}`}>
             <Tab.Navigator screenOptions={createScreenOptions}>
               <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
               <Tab.Screen name="Checkout" component={CheckoutNavigator} />
