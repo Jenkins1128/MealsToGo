@@ -17,6 +17,7 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		B3F30B1716004188A72B7A93 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 48DBBAEC250F43C588E21946 /* Lato-Regular.ttf */; };
 		E9CA744D2A0C6F7700956989 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E9CA744C2A0C6F7700956989 /* GoogleService-Info.plist */; };
+		C76DB216A8CA49038CF427A9 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 8BA2C5C7D39C4BBDB34EB45E /* Config.xcconfig */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		E8B725E9255B4520A7D8CFB8 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
 		E9CA744C2A0C6F7700956989 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		8BA2C5C7D39C4BBDB34EB45E /* Config.xcconfig */ = {isa = PBXFileReference; name = "Config.xcconfig"; path = "Config.xcconfig"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = text.xcconfig; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				8BA2C5C7D39C4BBDB34EB45E /* Config.xcconfig */,
 				13B07FAE1A68108700A75B9A /* MealsToGo */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* MealsToGoTests */,
@@ -291,6 +294,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C76DB216A8CA49038CF427A9 /* Config.xcconfig in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				E9CA744D2A0C6F7700956989 /* GoogleService-Info.plist in Resources */,
@@ -619,6 +623,7 @@
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 			};
 			name = Debug;
+			baseConfigurationReference = 8BA2C5C7D39C4BBDB34EB45E /* Config.xcconfig */;
 		};
 		83CBBA211A601CBA00E9B192 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -681,6 +686,7 @@
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
+			baseConfigurationReference = 8BA2C5C7D39C4BBDB34EB45E /* Config.xcconfig */;
 		};
 /* End XCBuildConfiguration section */
 

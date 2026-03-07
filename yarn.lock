@@ -7186,7 +7186,7 @@ __metadata:
     postinstall-postinstall: "npm:^2.1.0"
     react: "npm:^18.2.0"
     react-native: "npm:^0.71.8"
-    react-native-config: "npm:^1.6.1"
+    react-native-config: "npm:1.5.3"
     react-native-eject: "npm:^0.2.0"
     react-native-gesture-handler: "npm:^2.10.0"
     react-native-maps: "npm:^1.7.1"
@@ -8726,17 +8726,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-config@npm:^1.6.1":
-  version: 1.6.1
-  resolution: "react-native-config@npm:1.6.1"
+"react-native-config@npm:1.5.3":
+  version: 1.5.3
+  resolution: "react-native-config@npm:1.5.3"
   peerDependencies:
-    react: "*"
-    react-native: "*"
     react-native-windows: ">=0.61"
   peerDependenciesMeta:
     react-native-windows:
       optional: true
-  checksum: 10c0/9e2bbb7fb04bac878471f7b06132d84233c482952fc7dd0b651669a62cd35c35428302c7502a92898402505ec9b8d7997848122356b42de5c072dcce549d5813
+  checksum: 10c0/98e4659191881a72bf756efa469debe90b84ba5f366489dbdebabd45b4f9ec5b05f116db5bdf181c5c688b759c5bc60365b675ff7446b10216056cef15b5ce3b
   languageName: node
   linkType: hard
 
