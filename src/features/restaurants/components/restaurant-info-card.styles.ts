@@ -18,7 +18,8 @@ export const Info = styled.View`
 
 export const Rating = styled.View`
   flex-direction: row;
-  padding-vertical: ${props => props.theme.space[2]};
+  padding-top: ${props => props.theme.space[2]};
+  padding-bottom: ${props => props.theme.space[2]};
 `;
 
 export const Section = styled.View`
