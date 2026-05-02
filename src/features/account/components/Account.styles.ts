@@ -4,10 +4,9 @@ import { Button, TextInput } from "react-native-paper";
 import { Text } from "@/components/typography/Text.component";
 
 export const AccountBackground = styled.ImageBackground.attrs({
-  source: require("../../../assets/images/HomeBg.jpg"),
+  source: require("@assets/images/HomeBg.jpg"),
 })`
   flex: 1;
-  background-color: #ddd;
   align-items: center;
   justify-content: center;
 `;

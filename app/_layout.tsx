@@ -1,4 +1,4 @@
-import React, { useContext, useCallback } from "react";
+import React from "react";
 import { ThemeProvider as StyledThemeProvider } from "styled-components/native";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
@@ -18,9 +18,9 @@ export default function RootLayout() {
     "Lato-Regular": require("../assets/fonts/Lato-Regular.ttf"),
   });
 
-  const onLayoutRootView = useCallback(async () => {
+  React.useEffect(() => {
     if (fontsLoaded) {
-      await SplashScreen.hideAsync();
+      SplashScreen.hideAsync();
     }
   }, [fontsLoaded]);
 
@@ -33,7 +33,6 @@ export default function RootLayout() {
       <AuthenticationContextProvider>
         <Stack
           screenOptions={{ headerShown: false }}
-          onLayout={onLayoutRootView}
         />
         <StatusBar style="auto" />
       </AuthenticationContextProvider>

@@ -1,63 +1,76 @@
-require_relative '../node_modules/react-native/scripts/react_native_pods'
-require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
+# Set by expo-router. This enables Fabric-only features from react-native-screens
+ENV['RNS_GAMMA_ENABLED'] ||= '1'
+require File.join(File.dirname(`node --print "require.resolve('expo/package.json')"`), "scripts/autolinking")
+require File.join(File.dirname(`node --print "require.resolve('react-native/package.json')"`), "scripts/react_native_pods")
 
-platform :ios, '16.0'
+require 'json'
+podfile_properties = JSON.parse(File.read(File.join(__dir__, 'Podfile.properties.json'))) rescue {}
+
+def ccache_enabled?(podfile_properties)
+  # Environment variable takes precedence
+  return ENV['USE_CCACHE'] == '1' if ENV['USE_CCACHE']
+
+  # Fall back to Podfile properties
+  podfile_properties['apple.ccacheEnabled'] == 'true'
+end
+
+ENV['EX_DEV_CLIENT_NETWORK_INSPECTOR'] ||= podfile_properties['EX_DEV_CLIENT_NETWORK_INSPECTOR']
+ENV['RCT_USE_RN_DEP'] ||= '1' if podfile_properties['ios.buildReactNativeFromSource'] != 'true'
+ENV['RCT_USE_PREBUILT_RNCORE'] ||= '1' if podfile_properties['ios.buildReactNativeFromSource'] != 'true'
+ENV['RCT_HERMES_V1_ENABLED'] ||= '1' if podfile_properties['expo.useHermesV1'] == 'true'
+platform :ios, podfile_properties['ios.deploymentTarget'] || '15.1'
+
+prepare_react_native_project!
+
+$RNFirebaseAsStaticFramework = true
+use_modular_headers!
 
 target 'MealsToGo' do
-  config = use_native_modules!
+  use_expo_modules!
 
-  use_frameworks! :linkage => :static
-  $RNFirebaseAsStaticFramework = true
+  if ENV['EXPO_USE_COMMUNITY_AUTOLINKING'] == '1'
+    config_command = ['node', '-e', "process.argv=['', '', 'config'];require('@react-native-community/cli').run()"];
+  else
+    config_command = [
+      'node',
+      '--no-warnings',
+      '--eval',
+      'require(\'expo/bin/autolinking\')',
+      'expo-modules-autolinking',
+      'react-native-config',
+      '--json',
+      '--platform',
+      'ios'
+    ]
+  end
+
+  config = use_native_modules!(config_command)
+
+  use_frameworks! :linkage => podfile_properties['ios.useFrameworks'].to_sym if podfile_properties['ios.useFrameworks']
+  use_frameworks! :linkage => ENV['USE_FRAMEWORKS'].to_sym if ENV['USE_FRAMEWORKS']
 
   use_react_native!(
     :path => config[:reactNativePath],
-    :hermes_enabled => false
+    :hermes_enabled => podfile_properties['expo.jsEngine'] == nil || podfile_properties['expo.jsEngine'] == 'hermes',
+    # An absolute path to your application root.
+    :app_path => "#{Pod::Config.instance.installation_root}/..",
+    :privacy_file_aggregation_enabled => podfile_properties['apple.privacyManifestAggregationEnabled'] != 'false',
   )
 
-  target 'MealsToGoTests' do
-    inherit! :complete
-  end
-
   post_install do |installer|
-    react_native_post_install(installer)
-    __apply_Xcode_12_5_M1_post_install_workaround(installer)
+    react_native_post_install(
+      installer,
+      config[:reactNativePath],
+      :mac_catalyst_enabled => false,
+      :ccache_enabled => ccache_enabled?(podfile_properties),
+    )
 
-    # This loop is more robust as it iterates through every actual Xcode project generated
-    installer.generated_projects.each do |project|
-      project.targets.each do |target|
+    # Allow Firebase pods to include non-modular React Native headers
+    installer.pods_project.targets.each do |target|
+      if target.name.start_with?('RNFB')
         target.build_configurations.each do |config|
-          # Disable the sandbox restriction for all targets
-          config.build_settings['ENABLE_USER_SCRIPT_SANDBOXING'] = 'NO'
-          
-          # This forces EVERYTHING in the Pods project to iOS 16.0
-          config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '16.0'
-
-          # 2. Re-enable removed C++ functions (Crucial for Folly/Boost)
-          config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= ['$(inherited)', '_LIBCPP_ENABLE_CXX17_REMOVED_UNARY_BINARY_FUNCTION']
-
-          # Force C++17 to fix the 'unary_function' error
-          config.build_settings['CLANG_CXX_LANGUAGE_STANDARD'] = 'c++17'
-          config.build_settings['CLANG_C_LANGUAGE_STANDARD'] = 'gnu17'
-
-          # Suppress deprecated literal operator warning (Yoga/YGValue.h)
-          config.build_settings['OTHER_CPLUSPLUSFLAGS'] = ['$(inherited)', '-Wno-deprecated-literal-operator']
-        end
-
-        if target.name == 'RCT-Folly'
-          target.build_configurations.each do |config|
-            # The Enforcer: Disabling Modules for Folly specifically
-            config.build_settings['CLANG_ENABLE_MODULES'] = 'NO'
-          end
-        end
-
-        # This part handles the "Based on dependency analysis" script warnings
-        target.build_phases.each do |phase|
-          if phase.respond_to?(:name) &&
-            (phase.name == 'Create Symlinks to Header Folders' ||
-              phase.name == 'Start Packager' ||
-              phase.name == 'Bundle React Native code and images')
-            phase.always_out_of_date = '1'
-          end
+          config.build_settings['CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES'] = 'YES'
+          config.build_settings['DEFINES_MODULE'] = 'NO'
         end
       end
     end

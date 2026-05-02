@@ -9,7 +9,7 @@ import { AuthenticationContext } from "@/services/authentication/Authentication.
 import { colors } from "@/infrastructure/theme/Colors";
 
 const SettingsBackground = styled.ImageBackground.attrs({
-  source: require("../../../assets/images/HomeBg.jpg"),
+  source: require("@assets/images/HomeBg.jpg"),
 })`
   position: absolute;
   height: 100%;

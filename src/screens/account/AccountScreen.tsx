@@ -24,7 +24,8 @@ export const AccountScreen = () => {
           autoPlay
           loop
           resizeMode="cover"
-          source={require("../../../assets/animations/Watermelon.json")}
+          source={require("@assets/animations/Watermelon.json")}
+          style={{ width: "100%", height: "100%" }}
         />
       </AnimationWrapper>
       <Title>Meals To Go</Title>

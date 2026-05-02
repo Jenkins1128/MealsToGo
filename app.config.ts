@@ -18,7 +18,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   ios: {
     supportsTablet: true,
-    bundleIdentifier: "com.mealstogo.app",
+    bundleIdentifier: "com.isaiah-jenkins.MealsToGo",
     googleServicesFile: "./GoogleService-Info.plist",
   },
   android: {
