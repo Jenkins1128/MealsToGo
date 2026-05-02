@@ -1,9 +1,9 @@
-import React from 'react';
-import styled from 'styled-components/native';
-import WebView from 'react-native-webview';
-import {Text} from '../typography/text.component';
-import {Platform} from 'react-native';
-import {Restaurant} from '../../services/types';
+import React from "react";
+import styled from "styled-components/native";
+import WebView from "react-native-webview";
+import { Text } from "@/components/typography/Text.component";
+import { Platform } from "react-native";
+import { Restaurant } from "@/services/Types";
 
 const CompactImage = styled.Image`
   border-radius: 10px;
@@ -23,7 +23,7 @@ const Item = styled.View`
   align-items: center;
 `;
 
-const isAndroid = Platform.OS === 'android';
+const isAndroid = Platform.OS === "android";
 
 interface CompactRestaurantInfoProps {
   restaurant: Restaurant;
@@ -38,7 +38,7 @@ export const CompactRestaurantInfo = ({
 
   return (
     <Item>
-      <Image source={{uri: restaurant.photos[0]}} />
+      <Image source={{ uri: restaurant.photos[0] }} />
       <Text variant="caption" numberOfLines={3}>
         {restaurant.name}
       </Text>

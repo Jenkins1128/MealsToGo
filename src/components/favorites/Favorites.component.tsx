@@ -1,0 +1,39 @@
+import React, { useContext } from "react";
+import { TouchableOpacity } from "react-native";
+import styled from "styled-components/native";
+import { AntDesign } from "@expo/vector-icons";
+import { FavoritesContext } from "@/services/favorites/Favorites.context";
+import { Restaurant } from "@/services/Types";
+
+const FavoriteButton = styled(TouchableOpacity as any)`
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  z-index: 9;
+`;
+
+interface FavoriteProps {
+  restaurant: Restaurant;
+}
+
+export const Favorite = ({ restaurant }: FavoriteProps) => {
+  const { favorites, addToFavorites, removeFromFavorites } =
+    useContext(FavoritesContext);
+  const isFavorite = favorites.find((r) => r.placeId === restaurant.placeId);
+
+  return (
+    <FavoriteButton
+      onPress={() =>
+        isFavorite
+          ? removeFromFavorites(restaurant)
+          : addToFavorites(restaurant)
+      }
+    >
+      <AntDesign
+        name={isFavorite ? "heart" : "hearto"}
+        size={24}
+        color={isFavorite ? "red" : "white"}
+      />
+    </FavoriteButton>
+  );
+};

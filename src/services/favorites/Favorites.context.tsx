@@ -4,10 +4,10 @@ import React, {
   useEffect,
   useContext,
   ReactNode,
-} from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {AuthenticationContext} from '../../services/authentication/authentication.context';
-import {Restaurant} from '../types';
+} from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { AuthenticationContext } from "../authentication/Authentication.context";
+import { Restaurant } from "../Types";
 
 interface FavoritesContextValue {
   favorites: Restaurant[];
@@ -16,15 +16,15 @@ interface FavoritesContextValue {
 }
 
 export const FavoritesContext = createContext<FavoritesContextValue>(
-  {} as FavoritesContextValue,
+  {} as FavoritesContextValue
 );
 
 interface Props {
   children: ReactNode;
 }
 
-export const FavoritesContextProvider = ({children}: Props) => {
-  const {user} = useContext(AuthenticationContext);
+export const FavoritesContextProvider = ({ children }: Props) => {
+  const { user } = useContext(AuthenticationContext);
   const [favorites, setFavorites] = useState<Restaurant[]>([]);
 
   useEffect(() => {
@@ -44,7 +44,7 @@ export const FavoritesContextProvider = ({children}: Props) => {
       const jsonValue = JSON.stringify(value);
       await AsyncStorage.setItem(`@favorites-${uid}`, jsonValue);
     } catch (e) {
-      console.log('error storing', e);
+      console.log("error storing", e);
     }
   };
 
@@ -55,7 +55,7 @@ export const FavoritesContextProvider = ({children}: Props) => {
         setFavorites(JSON.parse(value));
       }
     } catch (e) {
-      console.log('error loading', e);
+      console.log("error loading", e);
     }
   };
 
@@ -65,7 +65,7 @@ export const FavoritesContextProvider = ({children}: Props) => {
 
   const remove = (restaurant: Restaurant) => {
     const newFavorites = favorites.filter(
-      x => x.placeId !== restaurant.placeId,
+      (x) => x.placeId !== restaurant.placeId
     );
     setFavorites(newFavorites);
   };
@@ -76,7 +76,8 @@ export const FavoritesContextProvider = ({children}: Props) => {
         favorites,
         addToFavorites: add,
         removeFromFavorites: remove,
-      }}>
+      }}
+    >
       {children}
     </FavoritesContext.Provider>
   );

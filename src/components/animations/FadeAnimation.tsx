@@ -1,5 +1,5 @@
-import React, {useRef, useEffect, ReactNode} from 'react';
-import {Animated, ViewStyle} from 'react-native';
+import React, { useRef, useEffect, ReactNode } from "react";
+import { Animated, ViewStyle } from "react-native";
 
 interface FadeInViewProps {
   duration?: number;
@@ -27,7 +27,8 @@ export const FadeInView = ({
       style={{
         ...style,
         opacity: fadeAnim,
-      }}>
+      }}
+    >
       {children}
     </Animated.View>
   );

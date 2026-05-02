@@ -1,12 +1,12 @@
-import styled from 'styled-components/native';
+import styled from "styled-components/native";
 import {
   Avatar,
   TextInput,
   Button,
   ActivityIndicator,
-  Colors,
-} from 'react-native-paper';
-import {colors} from '../../../infrastructure/theme/colors';
+  MD2Colors,
+} from "react-native-paper";
+import { colors } from "@/infrastructure/theme/Colors";
 
 export const CartIconContainer = styled.View`
   align-items: center;
@@ -17,7 +17,7 @@ export const CartIconContainer = styled.View`
 export const PaymentProcessing = styled(ActivityIndicator as any).attrs({
   size: 128,
   animating: true,
-  color: Colors.blue300,
+  color: MD2Colors.blue300,
 })`
   position: absolute;
   top: 50%;
@@ -33,7 +33,7 @@ export const CartIcon = styled(Avatar.Icon as any).attrs({
 `;
 
 export const NameInput = styled(TextInput as any)`
-  margin: ${props => props.theme.space[3]};
+  margin: ${(props: any) => props.theme.space[3]};
 `;
 
 export const PayButton = styled(Button as any).attrs({
@@ -41,7 +41,7 @@ export const PayButton = styled(Button as any).attrs({
 })`
   width: 80%;
   align-self: center;
-  padding: ${props => props.theme.space[2]};
+  padding: ${(props: any) => props.theme.space[2]};
 `;
 
 export const ClearButton = styled(Button as any).attrs({
@@ -49,5 +49,5 @@ export const ClearButton = styled(Button as any).attrs({
 })`
   width: 80%;
   align-self: center;
-  padding: ${props => props.theme.space[2]};
+  padding: ${(props: any) => props.theme.space[2]};
 `;

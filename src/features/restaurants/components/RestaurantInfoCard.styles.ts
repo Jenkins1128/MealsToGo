@@ -1,25 +1,25 @@
-import styled from 'styled-components/native';
-import {Card} from 'react-native-paper';
+import styled from "styled-components/native";
+import { Card } from "react-native-paper";
 
 export const RestaurantCard = styled(Card as any)`
-  background-color: ${props => props.theme.colors.bg.primary};
+  background-color: ${(props: any) => props.theme.colors.bg.primary};
   width: 95%;
   align-self: center;
 `;
 
 export const RestaurantCardCover = styled(Card.Cover as any)`
-  padding: ${props => props.theme.space[3]};
-  background-color: ${props => props.theme.colors.bg.primary};
+  padding: ${(props: any) => props.theme.space[3]};
+  background-color: ${(props: any) => props.theme.colors.bg.primary};
 `;
 
 export const Info = styled.View`
-  padding: ${props => props.theme.space[3]};
+  padding: ${(props: any) => props.theme.space[3]};
 `;
 
 export const Rating = styled.View`
   flex-direction: row;
-  padding-top: ${props => props.theme.space[2]};
-  padding-bottom: ${props => props.theme.space[2]};
+  padding-top: ${(props: any) => props.theme.space[2]};
+  padding-bottom: ${(props: any) => props.theme.space[2]};
 `;
 
 export const Section = styled.View`

@@ -4,10 +4,10 @@ import React, {
   useEffect,
   useContext,
   ReactNode,
-} from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {AuthenticationContext} from '../authentication/authentication.context';
-import {Restaurant, CartItem} from '../types';
+} from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { AuthenticationContext } from "../authentication/Authentication.context";
+import { Restaurant, CartItem } from "../Types";
 
 interface CartContextValue {
   addToCart: (item: CartItem, restaurant: Restaurant) => void;
@@ -18,15 +18,15 @@ interface CartContextValue {
 }
 
 export const CartContext = createContext<CartContextValue>(
-  {} as CartContextValue,
+  {} as CartContextValue
 );
 
 interface Props {
   children: ReactNode;
 }
 
-export const CartContextProvider = ({children}: Props) => {
-  const {user} = useContext(AuthenticationContext);
+export const CartContextProvider = ({ children }: Props) => {
+  const { user } = useContext(AuthenticationContext);
   const [cart, setCart] = useState<CartItem[]>([]);
   const [restaurant, setRestaurant] = useState<Restaurant | null>(null);
   const [sum, setSum] = useState(0);
@@ -48,7 +48,7 @@ export const CartContextProvider = ({children}: Props) => {
       setSum(0);
       return;
     }
-    const newSum = cart.reduce((acc, {price}) => {
+    const newSum = cart.reduce((acc, { price }) => {
       return (acc += price);
     }, 0);
     setSum(newSum);
@@ -57,14 +57,14 @@ export const CartContextProvider = ({children}: Props) => {
   const saveCart = async (
     rst: Restaurant | null,
     crt: CartItem[],
-    uid: string,
+    uid: string
   ) => {
     try {
       const item = `@cart-${uid}`;
-      const jsonValue = JSON.stringify({restaurant: rst, cart: crt});
+      const jsonValue = JSON.stringify({ restaurant: rst, cart: crt });
       await AsyncStorage.setItem(item, jsonValue);
     } catch (e) {
-      console.log('error storing', e);
+      console.log("error storing", e);
     }
   };
 
@@ -73,12 +73,12 @@ export const CartContextProvider = ({children}: Props) => {
       const item = `@cart-${uid}`;
       const value = await AsyncStorage.getItem(item);
       if (value !== null) {
-        const {restaurant: rst, cart: crt} = JSON.parse(value);
+        const { restaurant: rst, cart: crt } = JSON.parse(value);
         setRestaurant(rst);
         setCart(crt);
       }
     } catch (error) {
-      console.log('error loading', error);
+      console.log("error loading", error);
     }
   };
 
@@ -107,7 +107,8 @@ export const CartContextProvider = ({children}: Props) => {
         restaurant,
         cart,
         sum,
-      }}>
+      }}
+    >
       {children}
     </CartContext.Provider>
   );

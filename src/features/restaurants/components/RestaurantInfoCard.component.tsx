@@ -1,11 +1,11 @@
-import React from 'react';
-import {SvgXml} from 'react-native-svg';
-import {View} from 'react-native';
+import React from "react";
+import { SvgXml } from "react-native-svg";
+import { View } from "react-native";
 
-import star from '../../../../assets/star';
-import open from '../../../../assets/open';
-import {Spacer} from '../../../components/spacer/spacer.component';
-import {Text} from '../../../components/typography/text.component';
+import star from "../../../assets/icons/Star";
+import open from "../../../assets/icons/Open";
+import { Spacer } from "@/components/spacer/Spacer.component";
+import { Text } from "@/components/typography/Text.component";
 
 import {
   RestaurantCard,
@@ -15,9 +15,9 @@ import {
   Section,
   SectionEnd,
   Icon,
-} from './restaurant-info-card.styles';
-import {Favorite} from '../../../components/favorites/favorites.component';
-import {Restaurant} from '../../../services/types';
+} from "./RestaurantInfoCard.styles";
+import { Favorite } from "@/components/favorites/Favorites.component";
+import { Restaurant } from "@/services/Types";
 
 interface RestaurantInfoCardProps {
   restaurant: Restaurant;
@@ -27,12 +27,12 @@ export const RestaurantInfoCard = ({
   restaurant,
 }: RestaurantInfoCardProps) => {
   const {
-    name = 'Some Restaurant',
-    icon = 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png',
+    name = "Some Restaurant",
+    icon = "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
     photos = [
-      'https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg',
+      "https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg",
     ],
-    address = '100 some random street',
+    address = "100 some random street",
     isOpenNow = true,
     rating = 4,
     isClosedTemporarily = true,
@@ -44,7 +44,7 @@ export const RestaurantInfoCard = ({
     <RestaurantCard elevation={2}>
       <View>
         <Favorite restaurant={restaurant} />
-        <RestaurantCardCover key={name} source={{uri: photos[0]}} />
+        <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
       </View>
       <Info>
         <Text variant="label">{name}</Text>
@@ -67,7 +67,7 @@ export const RestaurantInfoCard = ({
               {isOpenNow && <SvgXml xml={open} width={20} height={20} />}
             </Spacer>
             <Spacer position="left" size="large">
-              <Icon source={{uri: icon}} />
+              <Icon source={{ uri: icon }} />
             </Spacer>
           </SectionEnd>
         </Section>

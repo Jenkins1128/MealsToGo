@@ -1,6 +1,6 @@
-import React, {createContext, useState, useEffect, ReactNode} from 'react';
-import {locationRequest, locationTransform} from './location.service';
-import {Location} from '../types';
+import React, { createContext, useState, useEffect, ReactNode } from "react";
+import { locationRequest, locationTransform } from "./Location.service";
+import { Location } from "../Types";
 
 interface LocationContextValue {
   isLoading: boolean;
@@ -11,15 +11,15 @@ interface LocationContextValue {
 }
 
 export const LocationContext = createContext<LocationContextValue>(
-  {} as LocationContextValue,
+  {} as LocationContextValue
 );
 
 interface Props {
   children: ReactNode;
 }
 
-export const LocationContextProvider = ({children}: Props) => {
-  const [keyword, setKeyword] = useState('San Francisco');
+export const LocationContextProvider = ({ children }: Props) => {
+  const [keyword, setKeyword] = useState("San Francisco");
   const [location, setLocation] = useState<Location | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -57,7 +57,8 @@ export const LocationContextProvider = ({children}: Props) => {
         location,
         search: onSearch,
         keyword,
-      }}>
+      }}
+    >
       {children}
     </LocationContext.Provider>
   );

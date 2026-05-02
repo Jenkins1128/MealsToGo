@@ -1,7 +1,7 @@
-import styled from 'styled-components/native';
-import {FlatList} from 'react-native';
-import {Button} from 'react-native-paper';
-import {colors} from '../../../infrastructure/theme/colors';
+import styled from "styled-components/native";
+import { FlatList } from "react-native";
+import { Button } from "react-native-paper";
+import { colors } from "@/infrastructure/theme/Colors";
 
 export const RestaurantList = styled(FlatList as any).attrs({
   contentContainerStyle: {
@@ -12,7 +12,7 @@ export const RestaurantList = styled(FlatList as any).attrs({
 export const OrderButton = styled(Button as any).attrs({
   color: colors.brand.primary,
 })`
-  padding: ${props => props.theme.space[2]};
+  padding: ${(props: any) => props.theme.space[2]};
   width: 80%;
   align-self: center;
 `;

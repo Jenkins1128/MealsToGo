@@ -4,10 +4,13 @@ import React, {
   useEffect,
   useContext,
   ReactNode,
-} from 'react';
-import {LocationContext} from '../location/location.context';
-import {restaurantsRequest, restaurantTransform} from './restaurants.service';
-import {Restaurant} from '../types';
+} from "react";
+import { LocationContext } from "../location/Location.context";
+import {
+  restaurantsRequest,
+  restaurantTransform,
+} from "./Restaurants.service";
+import { Restaurant } from "../Types";
 
 interface RestaurantsContextValue {
   restaurants: Restaurant[];
@@ -16,15 +19,15 @@ interface RestaurantsContextValue {
 }
 
 export const RestaurantsContext = createContext<RestaurantsContextValue>(
-  {} as RestaurantsContextValue,
+  {} as RestaurantsContextValue
 );
 
 interface Props {
   children: ReactNode;
 }
 
-export const RestaurantsContextProvider = ({children}: Props) => {
-  const {location} = useContext(LocationContext);
+export const RestaurantsContextProvider = ({ children }: Props) => {
+  const { location } = useContext(LocationContext);
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -57,7 +60,8 @@ export const RestaurantsContextProvider = ({children}: Props) => {
         restaurants,
         isLoading,
         error,
-      }}>
+      }}
+    >
       {children}
     </RestaurantsContext.Provider>
   );
