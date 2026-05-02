@@ -48,8 +48,17 @@ export const AuthenticationContextProvider = ({children}) => {
       return;
     }
     try {
+      console.log('Attempting registration with email:', email);
+      console.log('Firebase app name:', auth().app.name);
+      console.log('Firebase app options:', JSON.stringify(auth().app.options));
       await registerRequest(email, password);
     } catch (e) {
+      console.error('=== FIREBASE AUTH ERROR ===');
+      console.error('Error code:', e.code);
+      console.error('Error message:', e.message);
+      console.error('Native error code:', e.nativeErrorCode);
+      console.error('Full error:', JSON.stringify(e, null, 2));
+      console.error('=== END ERROR ===');
       setIsLoading(false);
       setError(e.toString());
     }

@@ -38,6 +38,9 @@ target 'MealsToGo' do
           # Force C++17 to fix the 'unary_function' error
           config.build_settings['CLANG_CXX_LANGUAGE_STANDARD'] = 'c++17'
           config.build_settings['CLANG_C_LANGUAGE_STANDARD'] = 'gnu17'
+
+          # Suppress deprecated literal operator warning (Yoga/YGValue.h)
+          config.build_settings['OTHER_CPLUSPLUSFLAGS'] = ['$(inherited)', '-Wno-deprecated-literal-operator']
         end
 
         if target.name == 'RCT-Folly'
