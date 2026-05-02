@@ -1,9 +1,18 @@
 # OSX
-#
 .DS_Store
 
+# Expo
+.expo/
+dist/
+expo-env.d.ts
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+
 # Xcode
-#
 build/
 *.pbxuser
 !default.pbxuser
@@ -22,16 +31,13 @@ DerivedData
 *.xcuserstate
 
 # Android/IntelliJ
-#
-build/
 .idea
 .gradle
 local.properties
 *.iml
 *.hprof
 
-# node.js
-#
+# Node
 node_modules/
 npm-debug.log
 yarn-error.log
@@ -43,12 +49,6 @@ buck-out/
 !debug.keystore
 
 # fastlane
-#
-# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
-# screenshots whenever they are needed.
-# For more information about the recommended setup visit:
-# https://docs.fastlane.tools/best-practices/source-control/
-
 */fastlane/report.xml
 */fastlane/Preview.html
 */fastlane/screenshots
@@ -59,7 +59,14 @@ buck-out/
 # CocoaPods
 /ios/Pods/
 
-# .env
-# react-native-config codegen
-ios/tmp.xcconfig
-.env*
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Native directories (managed by Expo Prebuild)
+/ios/
+/android/
+
+# Misc
+*.tsbuildinfo
