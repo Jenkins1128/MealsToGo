@@ -2634,6 +2634,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/camelize@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "@types/camelize@npm:1.0.1"
+  checksum: 10c0/516ffbfed9b9ab1544d39ebb1f9436f3e2d793cbd2ea8700be7b804df43959b234590f506e0bf618b0c5fc5c8b4295acd94ca6e57e0b1ef0143d1585beef323a
+  languageName: node
+  linkType: hard
+
 "@types/geojson@npm:^7946.0.10":
   version: 7946.0.10
   resolution: "@types/geojson@npm:7946.0.10"
@@ -8063,6 +8070,7 @@ __metadata:
     "@react-navigation/stack": "npm:^6.3.16"
     "@stripe/stripe-react-native": "npm:^0.27.1"
     "@tsconfig/react-native": "npm:^3.0.9"
+    "@types/camelize": "npm:^1.0.1"
     "@types/jest": "npm:^30.0.0"
     "@types/react": "npm:^19.2.14"
     "@types/react-native": "npm:^0.73.0"

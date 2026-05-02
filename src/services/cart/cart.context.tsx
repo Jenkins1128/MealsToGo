@@ -1,14 +1,34 @@
-import React, {createContext, useState, useEffect, useContext} from 'react';
+import React, {
+  createContext,
+  useState,
+  useEffect,
+  useContext,
+  ReactNode,
+} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
 import {AuthenticationContext} from '../authentication/authentication.context';
+import {Restaurant, CartItem} from '../types';
 
-export const CartContext = createContext();
+interface CartContextValue {
+  addToCart: (item: CartItem, restaurant: Restaurant) => void;
+  clearCart: () => void;
+  restaurant: Restaurant | null;
+  cart: CartItem[];
+  sum: number;
+}
 
-export const CartContextProvider = ({children}) => {
+export const CartContext = createContext<CartContextValue>(
+  {} as CartContextValue,
+);
+
+interface Props {
+  children: ReactNode;
+}
+
+export const CartContextProvider = ({children}: Props) => {
   const {user} = useContext(AuthenticationContext);
-  const [cart, setCart] = useState([]);
-  const [restaurant, setRestaurant] = useState(null);
+  const [cart, setCart] = useState<CartItem[]>([]);
+  const [restaurant, setRestaurant] = useState<Restaurant | null>(null);
   const [sum, setSum] = useState(0);
 
   useEffect(() => {
@@ -34,7 +54,11 @@ export const CartContextProvider = ({children}) => {
     setSum(newSum);
   }, [cart]);
 
-  const saveCart = async (rst, crt, uid) => {
+  const saveCart = async (
+    rst: Restaurant | null,
+    crt: CartItem[],
+    uid: string,
+  ) => {
     try {
       const item = `@cart-${uid}`;
       const jsonValue = JSON.stringify({restaurant: rst, cart: crt});
@@ -44,7 +68,7 @@ export const CartContextProvider = ({children}) => {
     }
   };
 
-  const loadCart = async uid => {
+  const loadCart = async (uid: string) => {
     try {
       const item = `@cart-${uid}`;
       const value = await AsyncStorage.getItem(item);
@@ -58,7 +82,7 @@ export const CartContextProvider = ({children}) => {
     }
   };
 
-  const add = (item, rst) => {
+  const add = (item: CartItem, rst: Restaurant) => {
     if (!restaurant || restaurant.placeId !== rst.placeId) {
       setRestaurant(rst);
       setCart([item]);
@@ -70,7 +94,9 @@ export const CartContextProvider = ({children}) => {
   const clear = () => {
     setCart([]);
     setRestaurant(null);
-    saveCart(null, [], user.uid);
+    if (user && user.uid) {
+      saveCart(null, [], user.uid);
+    }
   };
 
   return (

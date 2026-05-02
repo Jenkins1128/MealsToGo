@@ -1,7 +1,7 @@
 import {host} from '../../utils/env';
 import axios from 'axios';
 
-export const fetchPaymentIntentClientSecret = async amount => {
+export const fetchPaymentIntentClientSecret = async (amount: number) => {
   try {
     const response = await axios.post(`${host}/pay`, {
       currency: 'usd',
@@ -14,8 +14,12 @@ export const fetchPaymentIntentClientSecret = async amount => {
   }
 };
 
-export const payRequest = async (name, amount, confirmPayment) => {
-  const billingDetails: BillingDetails = {
+export const payRequest = async (
+  name: string,
+  amount: number,
+  confirmPayment: any,
+) => {
+  const billingDetails = {
     name: name,
   };
   // Fetch the intent client secret from the backend
@@ -27,11 +31,11 @@ export const payRequest = async (name, amount, confirmPayment) => {
       billingDetails,
     });
     if (error) {
-      return Promise.reject('Payment confirmation error', error);
+      return Promise.reject('Payment confirmation error');
     } else if (paymentIntent) {
       return paymentIntent;
     }
   } catch (error) {
-    return Promise.reject('Payment confirmation error', error);
+    return Promise.reject('Payment confirmation error');
   }
 };

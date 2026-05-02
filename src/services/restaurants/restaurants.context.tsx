@@ -1,15 +1,33 @@
-import React, {useState, createContext, useEffect, useContext} from 'react';
+import React, {
+  useState,
+  createContext,
+  useEffect,
+  useContext,
+  ReactNode,
+} from 'react';
 import {LocationContext} from '../location/location.context';
-
 import {restaurantsRequest, restaurantTransform} from './restaurants.service';
+import {Restaurant} from '../types';
 
-export const RestaurantsContext = createContext();
+interface RestaurantsContextValue {
+  restaurants: Restaurant[];
+  isLoading: boolean;
+  error: string | null;
+}
 
-export const RestaurantsContextProvider = ({children}) => {
+export const RestaurantsContext = createContext<RestaurantsContextValue>(
+  {} as RestaurantsContextValue,
+);
+
+interface Props {
+  children: ReactNode;
+}
+
+export const RestaurantsContextProvider = ({children}: Props) => {
   const {location} = useContext(LocationContext);
-  const [restaurants, setRestaurants] = useState([]);
+  const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (location) {
@@ -18,7 +36,7 @@ export const RestaurantsContextProvider = ({children}) => {
     }
   }, [location]);
 
-  const retrieveRestaurants = async loc => {
+  const retrieveRestaurants = async (loc: string) => {
     setIsLoading(true);
     setRestaurants([]);
     try {
@@ -27,9 +45,9 @@ export const RestaurantsContextProvider = ({children}) => {
       setError(null);
       setIsLoading(false);
       setRestaurants(results);
-    } catch (e) {
+    } catch (e: any) {
       setIsLoading(false);
-      setError(e);
+      setError(e.toString());
     }
   };
 

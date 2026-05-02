@@ -1,14 +1,28 @@
-import React, {createContext, useState, useEffect} from 'react';
-
+import React, {createContext, useState, useEffect, ReactNode} from 'react';
 import {locationRequest, locationTransform} from './location.service';
+import {Location} from '../types';
 
-export const LocationContext = createContext();
+interface LocationContextValue {
+  isLoading: boolean;
+  error: string | null;
+  location: Location | null;
+  search: (searchKeyword: string) => void;
+  keyword: string;
+}
 
-export const LocationContextProvider = ({children}) => {
+export const LocationContext = createContext<LocationContextValue>(
+  {} as LocationContextValue,
+);
+
+interface Props {
+  children: ReactNode;
+}
+
+export const LocationContextProvider = ({children}: Props) => {
   const [keyword, setKeyword] = useState('San Francisco');
-  const [location, setLocation] = useState(null);
+  const [location, setLocation] = useState<Location | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!keyword.length) {
@@ -16,20 +30,21 @@ export const LocationContextProvider = ({children}) => {
     }
     const requestLocation = async () => {
       try {
+        setIsLoading(true);
         const res = await locationRequest(keyword.toLowerCase().trim());
         const result = locationTransform(res);
         setError(null);
         setIsLoading(false);
         setLocation(result);
-      } catch (e) {
+      } catch (e: any) {
         setIsLoading(false);
-        setError(e);
+        setError(e.toString());
       }
     };
     requestLocation();
   }, [keyword]);
 
-  const onSearch = searchKeyword => {
+  const onSearch = (searchKeyword: string) => {
     setIsLoading(true);
     setKeyword(searchKeyword);
   };

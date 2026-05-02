@@ -1,20 +1,40 @@
-import React, {useState, useEffect, createContext} from 'react';
-import auth from '@react-native-firebase/auth';
+import React, {useState, useEffect, createContext, ReactNode} from 'react';
+import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
 import {loginRequest, registerRequest} from './authentication.service';
 
-export const AuthenticationContext = createContext();
+interface AuthenticationContextValue {
+  isAuthenticated: boolean;
+  user: FirebaseAuthTypes.User | null;
+  isLoading: boolean;
+  error: string | null;
+  onLogin: (email: string, password: string) => Promise<void>;
+  onRegister: (
+    email: string,
+    password: string,
+    repeatedPassword: string,
+  ) => Promise<void>;
+  onLogout: () => Promise<void>;
+}
 
-export const AuthenticationContextProvider = ({children}) => {
+export const AuthenticationContext = createContext<AuthenticationContextValue>(
+  {} as AuthenticationContextValue,
+);
+
+interface Props {
+  children: ReactNode;
+}
+
+export const AuthenticationContextProvider = ({children}: Props) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [user, setUser] = useState(null);
-  const [error, setError] = useState(null);
+  const [user, setUser] = useState<FirebaseAuthTypes.User | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
     return subscriber; // unsubscribe on unmount
   }, []);
 
-  const onAuthStateChanged = usr => {
+  const onAuthStateChanged = (usr: FirebaseAuthTypes.User | null) => {
     if (usr) {
       setUser(usr);
       setIsLoading(false);
@@ -23,11 +43,11 @@ export const AuthenticationContextProvider = ({children}) => {
     }
   };
 
-  const onLogin = async (email, password) => {
+  const onLogin = async (email: string, password: string) => {
     setIsLoading(true);
     try {
       await loginRequest(email, password);
-    } catch (e) {
+    } catch (e: any) {
       setIsLoading(false);
       setError(e.toString());
     }
@@ -40,7 +60,11 @@ export const AuthenticationContextProvider = ({children}) => {
     } catch (e) {}
   };
 
-  const onRegister = async (email, password, repeatedPassword) => {
+  const onRegister = async (
+    email: string,
+    password: string,
+    repeatedPassword: string,
+  ) => {
     setIsLoading(true);
     if (password !== repeatedPassword) {
       setError('Error: Passwords do no match');
@@ -52,7 +76,7 @@ export const AuthenticationContextProvider = ({children}) => {
       console.log('Firebase app name:', auth().app.name);
       console.log('Firebase app options:', JSON.stringify(auth().app.options));
       await registerRequest(email, password);
-    } catch (e) {
+    } catch (e: any) {
       console.error('=== FIREBASE AUTH ERROR ===');
       console.error('Error code:', e.code);
       console.error('Error message:', e.message);
