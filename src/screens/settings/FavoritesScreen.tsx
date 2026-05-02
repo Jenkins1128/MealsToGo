@@ -8,8 +8,8 @@ import { Text } from "@/components/typography/Text.component";
 import { SafeArea } from "@/components/utility/SafeArea.component";
 import { Spacer } from "@/components/spacer/Spacer.component";
 
-import { RestaurantList } from "@/features/restaurants/RestaurantList.styles";
-import { RestaurantInfoCard } from "@/features/restaurants/RestaurantInfoCard.component";
+import { RestaurantList } from "@/features/restaurants/components/RestaurantList.styles";
+import { RestaurantInfoCard } from "@/features/restaurants/components/RestaurantInfoCard.component";
 
 const NoFavoritesArea = styled(SafeArea)`
   align-items: center;

@@ -4,8 +4,8 @@ import styled from "styled-components/native";
 import { useRouter } from "expo-router";
 import { LocationContext } from "@/services/location/Location.context";
 import { RestaurantsContext } from "@/services/restaurants/Restaurants.context";
-import { Search } from "@/features/map/Search.component";
-import { MapCallout } from "@/features/map/MapCallout.component";
+import { Search } from "@/features/map/components/Search.component";
+import { MapCallout } from "@/features/map/components/MapCallout.component";
 
 const Map = styled(MapView as any)`
   height: 100%;

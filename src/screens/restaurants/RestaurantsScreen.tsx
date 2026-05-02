@@ -14,9 +14,9 @@ import { RestaurantsContext } from "@/services/restaurants/Restaurants.context";
 import { FavoritesContext } from "@/services/favorites/Favorites.context";
 import { FavoritesBar } from "@/components/favorites/FavoritesBar.component";
 
-import { Search } from "@/features/restaurants/Search.component";
-import { RestaurantInfoCard } from "@/features/restaurants/RestaurantInfoCard.component";
-import { RestaurantList } from "@/features/restaurants/RestaurantList.styles";
+import { Search } from "@/features/restaurants/components/Search.component";
+import { RestaurantInfoCard } from "@/features/restaurants/components/RestaurantInfoCard.component";
+import { RestaurantList } from "@/features/restaurants/components/RestaurantList.styles";
 
 const Loading = styled(ActivityIndicator as any)`
   margin-left: -25px;

@@ -9,7 +9,7 @@ import {
   AuthButton,
   AnimationWrapper,
   Title,
-} from "@/features/account/Account.styles";
+} from "@/features/account/components/Account.styles";
 import { Spacer } from "@/components/spacer/Spacer.component";
 
 export const AccountScreen = () => {

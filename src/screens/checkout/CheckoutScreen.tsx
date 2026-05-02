@@ -8,7 +8,7 @@ import { Spacer } from "@/components/spacer/Spacer.component";
 import { SafeArea } from "@/components/utility/SafeArea.component";
 
 import { CartContext } from "@/services/cart/Cart.context";
-import { CreditCardInput } from "@/features/checkout/CreditCard.component";
+import { CreditCardInput } from "@/features/checkout/components/CreditCard.component";
 import {
   CartIconContainer,
   CartIcon,
@@ -16,8 +16,8 @@ import {
   PayButton,
   ClearButton,
   PaymentProcessing,
-} from "@/features/checkout/Checkout.styles";
-import { RestaurantInfoCard } from "@/features/restaurants/RestaurantInfoCard.component";
+} from "@/features/checkout/components/Checkout.styles";
+import { RestaurantInfoCard } from "@/features/restaurants/components/RestaurantInfoCard.component";
 import { List, Divider } from "react-native-paper";
 import { payRequest } from "@/services/checkout/Checkout.service";
 

@@ -5,7 +5,7 @@ import { SafeArea } from "@/components/utility/SafeArea.component";
 import {
   CartIconContainer,
   CartIcon,
-} from "@/features/checkout/Checkout.styles";
+} from "@/features/checkout/components/Checkout.styles";
 
 export const CheckoutSuccessScreen = () => (
   <SafeArea>

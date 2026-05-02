@@ -6,7 +6,7 @@ import { colors } from "@/infrastructure/theme/Colors";
 import {
   CartIconContainer,
   CartIcon,
-} from "@/features/checkout/Checkout.styles";
+} from "@/features/checkout/components/Checkout.styles";
 
 interface CheckoutErrorScreenProps {
   error: string;
