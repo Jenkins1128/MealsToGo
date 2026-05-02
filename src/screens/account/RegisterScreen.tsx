@@ -16,7 +16,13 @@ import { ActivityIndicator, MD2Colors } from "react-native-paper";
 
 export const RegisterScreen = () => {
   const router = useRouter();
-  const { onRegister, isLoading, error } = useContext(AuthenticationContext);
+  const { onRegister, isLoading, error, isAuthenticated } = useContext(AuthenticationContext);
+
+  React.useEffect(() => {
+    if (isAuthenticated) {
+      router.replace("/(tabs)/restaurants");
+    }
+  }, [isAuthenticated, router]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatedPassword, setRepeatedPassword] = useState("");

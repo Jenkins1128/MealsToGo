@@ -1,6 +1,13 @@
 import React, { useState, useEffect, createContext, ReactNode } from "react";
-import auth, { FirebaseAuthTypes } from "@react-native-firebase/auth";
+import {
+  getAuth,
+  onAuthStateChanged,
+  signOut,
+  FirebaseAuthTypes,
+} from "@react-native-firebase/auth";
 import { loginRequest, registerRequest } from "./Authentication.service";
+
+const auth = getAuth();
 
 interface AuthenticationContextValue {
   isAuthenticated: boolean;
@@ -30,11 +37,11 @@ export const AuthenticationContextProvider = ({ children }: Props) => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    const subscriber = onAuthStateChanged(auth, onAuthStateChangedListener);
     return subscriber; // unsubscribe on unmount
   }, []);
 
-  const onAuthStateChanged = (usr: FirebaseAuthTypes.User | null) => {
+  const onAuthStateChangedListener = (usr: FirebaseAuthTypes.User | null) => {
     if (usr) {
       setUser(usr);
       setIsLoading(false);
@@ -47,6 +54,7 @@ export const AuthenticationContextProvider = ({ children }: Props) => {
     setIsLoading(true);
     try {
       await loginRequest(email, password);
+      setIsLoading(false);
     } catch (e: any) {
       setIsLoading(false);
       setError(e.toString());
@@ -56,7 +64,7 @@ export const AuthenticationContextProvider = ({ children }: Props) => {
   const onLogout = async () => {
     setUser(null);
     try {
-      await auth().signOut();
+      await signOut(auth);
     } catch (e) {}
   };
 
@@ -73,6 +81,7 @@ export const AuthenticationContextProvider = ({ children }: Props) => {
     }
     try {
       await registerRequest(email, password);
+      setIsLoading(false);
     } catch (e: any) {
       setIsLoading(false);
       setError(e.toString());

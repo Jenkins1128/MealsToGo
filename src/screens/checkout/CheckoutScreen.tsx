@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { ScrollView } from "react-native";
+import { ScrollView, TouchableOpacity } from "react-native";
 import { useConfirmPayment } from "@stripe/stripe-react-native";
 import { useRouter } from "expo-router";
 
@@ -40,10 +40,10 @@ export const CheckoutScreen = () => {
       await payRequest(name, sum, confirmPayment);
       clearCart();
       router.push("/(tabs)/checkout/Success");
-    } catch (error) {
+    } catch (error: any) {
       router.push({
         pathname: "/(tabs)/checkout/Error",
-        params: { error: "Something went wrong processing your credit card" },
+        params: { error: error.message || error.toString() || "Something went wrong processing your credit card" },
       });
     }
   };
@@ -61,7 +61,19 @@ export const CheckoutScreen = () => {
 
   return (
     <SafeArea>
-      <RestaurantInfoCard restaurant={restaurant} />
+      <TouchableOpacity
+        onPress={() =>
+          router.push({
+            pathname: "/(tabs)/restaurants/[id]",
+            params: {
+              id: restaurant.placeId,
+              restaurant: JSON.stringify(restaurant),
+            },
+          })
+        }
+      >
+        <RestaurantInfoCard restaurant={restaurant} />
+      </TouchableOpacity>
       {loading && <PaymentProcessing />}
       <ScrollView>
         <Spacer position="left" size="medium">

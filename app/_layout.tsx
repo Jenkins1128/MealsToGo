@@ -8,6 +8,8 @@ import { useFonts } from "expo-font";
 import { theme } from "@/infrastructure/theme";
 import { AuthenticationContextProvider } from "@/services/authentication/Authentication.context";
 
+import { SafeAreaProvider } from "react-native-safe-area-context";
+
 const ThemeProvider = StyledThemeProvider as any;
 
 SplashScreen.preventAutoHideAsync();
@@ -29,13 +31,13 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider theme={theme as any}>
-      <AuthenticationContextProvider>
-        <Stack
-          screenOptions={{ headerShown: false }}
-        />
-        <StatusBar style="auto" />
-      </AuthenticationContextProvider>
-    </ThemeProvider>
+    <SafeAreaProvider>
+      <ThemeProvider theme={theme as any}>
+        <AuthenticationContextProvider>
+          <Stack screenOptions={{ headerShown: false }} />
+          <StatusBar style="auto" />
+        </AuthenticationContextProvider>
+      </ThemeProvider>
+    </SafeAreaProvider>
   );
 }

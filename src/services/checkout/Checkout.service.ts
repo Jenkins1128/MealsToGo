@@ -10,7 +10,7 @@ export const fetchPaymentIntentClientSecret = async (amount: number) => {
     const { clientSecret } = response.data;
     return clientSecret;
   } catch (error) {
-    return error;
+    return Promise.reject(error);
   }
 };
 
@@ -29,11 +29,11 @@ export const payRequest = async (
       billingDetails,
     });
     if (error) {
-      return Promise.reject("Payment confirmation error");
+      return Promise.reject(new Error(error.message || "Payment confirmation error"));
     } else if (paymentIntent) {
       return paymentIntent;
     }
-  } catch (error) {
-    return Promise.reject("Payment confirmation error");
+  } catch (error: any) {
+    return Promise.reject(error);
   }
 };

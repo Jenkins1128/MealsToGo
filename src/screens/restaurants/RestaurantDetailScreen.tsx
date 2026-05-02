@@ -8,6 +8,7 @@ import { SafeArea } from "@/components/utility/SafeArea.component";
 import { Spacer } from "@/components/spacer/Spacer.component";
 import { OrderButton } from "@/features/restaurants/components/RestaurantList.styles";
 import { CartContext } from "@/services/cart/Cart.context";
+import { colors } from "../../infrastructure/theme/Colors";
 import { Restaurant } from "@/services/Types";
 
 interface RestaurantDetailScreenProps {
@@ -89,9 +90,11 @@ export const RestaurantDetailScreen = ({
         <OrderButton
           icon="currency-usd"
           mode="contained"
+          buttonColor={colors.brand.primary}
           onPress={() => {
             addToCart({ item: "special", price: 1299 }, restaurant);
-            router.push("/(tabs)/checkout");
+            router.dismiss();
+            router.navigate("/checkout");
           }}
         >
           Order Special Only 12.99

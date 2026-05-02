@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
-import { AntDesign } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import { FavoritesContext } from "@/services/favorites/Favorites.context";
 import { Restaurant } from "@/services/Types";
 
@@ -29,8 +29,8 @@ export const Favorite = ({ restaurant }: FavoriteProps) => {
           : addToFavorites(restaurant)
       }
     >
-      <AntDesign
-        name={isFavorite ? "heart" : "hearto"}
+      <Ionicons
+        name={isFavorite ? "heart" : "heart-outline"}
         size={24}
         color={isFavorite ? "red" : "white"}
       />

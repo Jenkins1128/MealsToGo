@@ -18,7 +18,13 @@ export const LoginScreen = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { onLogin, error, isLoading } = useContext(AuthenticationContext);
+  const { onLogin, error, isLoading, isAuthenticated } = useContext(AuthenticationContext);
+
+  React.useEffect(() => {
+    if (isAuthenticated) {
+      router.replace("/(tabs)/restaurants");
+    }
+  }, [isAuthenticated, router]);
 
   return (
     <AccountBackground>
