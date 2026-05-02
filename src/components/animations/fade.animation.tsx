@@ -1,7 +1,17 @@
-import React, {useRef, useEffect} from 'react';
-import {Animated} from 'react-native';
+import React, {useRef, useEffect, ReactNode} from 'react';
+import {Animated, ViewStyle} from 'react-native';
 
-export const FadeInView = ({duration = 1500, ...props}) => {
+interface FadeInViewProps {
+  duration?: number;
+  children?: ReactNode;
+  style?: ViewStyle;
+}
+
+export const FadeInView = ({
+  duration = 1500,
+  children,
+  style,
+}: FadeInViewProps) => {
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -15,10 +25,10 @@ export const FadeInView = ({duration = 1500, ...props}) => {
   return (
     <Animated.View
       style={{
-        ...props.style,
+        ...style,
         opacity: fadeAnim,
       }}>
-      {props.children}
+      {children}
     </Animated.View>
   );
 };

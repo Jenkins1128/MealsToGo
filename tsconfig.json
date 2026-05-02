@@ -8,6 +8,8 @@
     "resolveJsonModule": true,
     "baseUrl": ".",
     "ignoreDeprecations": "6.0",
+    "skipLibCheck": true,
+    "types": ["react", "react-native", "styled-components-react-native"],
     "paths": {
       "*": ["src/*"]
     }

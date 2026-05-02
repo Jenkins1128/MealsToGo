@@ -1,6 +1,6 @@
-import styled from 'styled-components/native';
+import styled, {DefaultTheme} from 'styled-components/native';
 
-const defaultTextStyles = theme => `
+const defaultTextStyles = (theme: DefaultTheme) => `
   font-family: ${theme.fonts.body};
   font-weight: ${theme.fontWeights.regular};
   color: ${theme.colors.text.primary};
@@ -9,24 +9,24 @@ const defaultTextStyles = theme => `
   margin-bottom: 0px;
 `;
 
-const body = theme => `
+const body = (theme: DefaultTheme) => `
     font-size: ${theme.fontSizes.body};
 `;
 
-const hint = theme => `
+const hint = (theme: DefaultTheme) => `
     font-size: ${theme.fontSizes.body};
 `;
 
-const error = theme => `
+const error = (theme: DefaultTheme) => `
     color: ${theme.colors.text.error};
 `;
 
-const caption = theme => `
+const caption = (theme: DefaultTheme) => `
     font-size: ${theme.fontSizes.caption};
     font-weight: ${theme.fontWeights.bold};
 `;
 
-const label = theme => `
+const label = (theme: DefaultTheme) => `
     font-family: ${theme.fonts.heading};
     font-size: ${theme.fontSizes.body};
     font-weight: ${theme.fontWeights.medium};
@@ -40,11 +40,13 @@ const variants = {
   hint,
 };
 
-export const Text = styled.Text`
-  ${({theme}) => defaultTextStyles(theme)}
-  ${({variant, theme}) => variants[variant](theme)}
-`;
+export type TextVariant = keyof typeof variants;
 
-Text.defaultProps = {
-  variant: 'body',
-};
+interface TextProps {
+  variant?: TextVariant;
+}
+
+export const Text = styled.Text<TextProps>`
+  ${({theme}) => defaultTextStyles(theme)}
+  ${({variant = 'body', theme}) => variants[variant](theme)}
+`;

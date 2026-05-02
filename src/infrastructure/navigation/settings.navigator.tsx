@@ -7,7 +7,12 @@ import {
   CardStyleInterpolators,
 } from '@react-navigation/stack';
 
-const SettingsStack = createStackNavigator();
+export type SettingsStackParamList = {
+  Settings: undefined;
+  Favorites: undefined;
+};
+
+const SettingsStack = createStackNavigator<SettingsStackParamList>();
 
 export const SettingsNavigator = () => {
   return (
@@ -21,9 +26,12 @@ export const SettingsNavigator = () => {
           headerShown: false,
         }}
         name="Settings"
-        component={SettingsScreen}
+        component={SettingsScreen as any}
       />
-      <SettingsStack.Screen name="Favorites" component={FavoritesScreen} />
+      <SettingsStack.Screen
+        name="Favorites"
+        component={FavoritesScreen as any}
+      />
     </SettingsStack.Navigator>
   );
 };
