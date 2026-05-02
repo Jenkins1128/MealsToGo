@@ -482,7 +482,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.isaiah-jenkins.MealsToGo;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.isaiah-jenkins.MealsToGo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MealsToGo.app/MealsToGo";
 			};
@@ -506,7 +506,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.isaiah-jenkins.MealsToGo;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.isaiah-jenkins.MealsToGo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MealsToGo.app/MealsToGo";
 			};
@@ -527,7 +527,7 @@
 					"@executable_path/Frameworks",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.isaiah-jenkins.MealsToGo;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.isaiah-jenkins.MealsToGo";
 				PRODUCT_NAME = MealsToGo;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -549,7 +549,7 @@
 					"@executable_path/Frameworks",
 				);
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.isaiah-jenkins.MealsToGo;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.isaiah-jenkins.MealsToGo";
 				PRODUCT_NAME = MealsToGo;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
