@@ -1,5 +1,6 @@
 import React from 'react';
-import {ThemeProvider} from 'styled-components/native';
+import {ThemeProvider as StyledThemeProvider} from 'styled-components/native';
+const ThemeProvider = StyledThemeProvider as any;
 import {StatusBar, LogBox} from 'react-native';
 
 import {theme} from './src/infrastructure/theme';
@@ -15,12 +16,12 @@ LogBox.ignoreLogs([
 const App = () => {
   return (
     <>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme as any}>
         <AuthenticationContextProvider>
           <Navigation />
         </AuthenticationContextProvider>
       </ThemeProvider>
-      <StatusBar style="auto" />
+      <StatusBar barStyle="default" />
     </>
   );
 };

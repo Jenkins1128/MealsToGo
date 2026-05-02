@@ -1,21 +1,31 @@
 import React, {useContext, useState, useEffect} from 'react';
-import MapView, {Marker, Callout} from 'react-native-maps';
+import MapView, {Marker, Callout, Region} from 'react-native-maps';
 import styled from 'styled-components/native';
 import {LocationContext} from '../../../services/location/location.context';
 import {RestaurantsContext} from '../../../services/restaurants/restaurants.context';
 import {Search} from '../components/search.component';
 import {MapCallout} from '../components/map-callout.component';
+import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
+import {AppTabParamList} from '../../../infrastructure/navigation/app.navigator';
 
-const Map = styled(MapView)`
+const Map = styled(MapView as any)`
   height: 100%;
   width: 100%;
 `;
 
-const RestaurantMap = ({navigation}) => {
+interface RestaurantMapProps {
+  navigation: any;
+}
+
+const RestaurantMap = ({navigation}: RestaurantMapProps) => {
   const {location} = useContext(LocationContext);
   const {restaurants = []} = useContext(RestaurantsContext);
-  //for zooming on the map
   const [latDelta, setLatDelta] = useState(0);
+
+  if (!location) {
+    return null;
+  }
+
   const {viewport, lat, lng} = location;
 
   useEffect(() => {
@@ -59,7 +69,9 @@ const RestaurantMap = ({navigation}) => {
   );
 };
 
-export const MapScreen = ({navigation}) => {
+type Props = BottomTabScreenProps<AppTabParamList, 'Map'>;
+
+export const MapScreen = ({navigation}: Props) => {
   const {location} = useContext(LocationContext);
   if (!location) {
     return (

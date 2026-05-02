@@ -14,7 +14,7 @@ export const CartIconContainer = styled.View`
   flex: 1;
 `;
 
-export const PaymentProcessing = styled(ActivityIndicator).attrs({
+export const PaymentProcessing = styled(ActivityIndicator as any).attrs({
   size: 128,
   animating: true,
   color: Colors.blue300,
@@ -25,17 +25,18 @@ export const PaymentProcessing = styled(ActivityIndicator).attrs({
   z-index: 999;
 `;
 
-export const CartIcon = styled(Avatar.Icon).attrs({
+export const CartIcon = styled(Avatar.Icon as any).attrs({
   size: 128,
 })`
-  background-color: ${props => props.bg || props.theme.colors.brand.primary};
+  background-color: ${(props: any) =>
+    props.bg || props.theme.colors.brand.primary};
 `;
 
-export const NameInput = styled(TextInput)`
+export const NameInput = styled(TextInput as any)`
   margin: ${props => props.theme.space[3]};
 `;
 
-export const PayButton = styled(Button).attrs({
+export const PayButton = styled(Button as any).attrs({
   color: colors.brand.primary,
 })`
   width: 80%;
@@ -43,7 +44,7 @@ export const PayButton = styled(Button).attrs({
   padding: ${props => props.theme.space[2]};
 `;
 
-export const ClearButton = styled(Button).attrs({
+export const ClearButton = styled(Button as any).attrs({
   color: colors.ui.error,
 })`
   width: 80%;

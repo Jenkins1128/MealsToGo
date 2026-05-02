@@ -17,8 +17,15 @@ import {
   Icon,
 } from './restaurant-info-card.styles';
 import {Favorite} from '../../../components/favorites/favorites.component';
+import {Restaurant} from '../../../services/types';
 
-export const RestaurantInfoCard = ({restaurant = {}}) => {
+interface RestaurantInfoCardProps {
+  restaurant: Restaurant;
+}
+
+export const RestaurantInfoCard = ({
+  restaurant,
+}: RestaurantInfoCardProps) => {
   const {
     name = 'Some Restaurant',
     icon = 'https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png',

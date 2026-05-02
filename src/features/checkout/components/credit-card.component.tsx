@@ -1,8 +1,13 @@
 import React from 'react';
 import {CardField} from '@stripe/stripe-react-native';
 
-export const CreditCardInput = ({name, onSuccess}) => {
-  const onCardChange = cardDetails => {
+interface CreditCardInputProps {
+  name: string;
+  onSuccess: (cardDetails: any) => void;
+}
+
+export const CreditCardInput = ({name, onSuccess}: CreditCardInputProps) => {
+  const onCardChange = (cardDetails: any) => {
     const isComplete = cardDetails.complete;
     if (isComplete) {
       onSuccess(cardDetails);
@@ -12,14 +17,14 @@ export const CreditCardInput = ({name, onSuccess}) => {
   return (
     <CardField
       postalCodeEnabled={true}
-      placeholder={{
+      placeholders={{
         number: '4242 4242 4242 4242',
       }}
       cardStyle={{
         backgroundColor: '#FFFFFF',
         textColor: '#000000',
         placeholderColor: '#cccccc',
-      }}
+      } as any}
       style={{
         width: '100%',
         height: 50,

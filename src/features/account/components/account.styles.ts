@@ -7,7 +7,7 @@ export const AccountBackground = styled.ImageBackground.attrs({
   source: require('../../../../assets/home_bg.jpg'),
 })`
   flex: 1;
-  background-color: #dd;
+  background-color: #ddd;
   align-items: center;
   justify-content: center;
 `;
@@ -25,19 +25,20 @@ export const AccountContainer = styled.View`
   margin-top: ${props => props.theme.space[2]};
 `;
 
-export const AuthButton = styled(Button).attrs({
+export const AuthButton = styled(Button as any).attrs({
   color: colors.brand.primary,
 })`
   padding: ${props => props.theme.space[2]};
 `;
 
-export const AuthInput = styled(TextInput)`
+export const AuthInput = styled(TextInput as any)`
   width: 300px;
 `;
 
-export const Title = styled(Text)`
+export const Title = styled(Text as any)`
   font-size: 30px;
 `;
+
 export const ErrorContainer = styled.View`
   max-width: 300px;
   align-items: center;

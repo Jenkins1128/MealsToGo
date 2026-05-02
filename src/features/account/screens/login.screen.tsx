@@ -12,12 +12,15 @@ import {Text} from '../../../components/typography/text.component';
 import {Spacer} from '../../../components/spacer/spacer.component';
 import {AuthenticationContext} from '../../../services/authentication/authentication.context';
 import {ActivityIndicator, Colors} from 'react-native-paper';
+import {StackScreenProps} from '@react-navigation/stack';
+import {AccountStackParamList} from '../../../infrastructure/navigation/account.navigator';
 
-export const RegisterScreen = ({navigation}) => {
-  const {onRegister, isLoading, error} = useContext(AuthenticationContext);
+type Props = StackScreenProps<AccountStackParamList, 'Login'>;
+
+export const LoginScreen = ({navigation}: Props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [repeatedPassword, setRepeatedPassword] = useState('');
+  const {onLogin, error, isLoading} = useContext(AuthenticationContext);
 
   return (
     <AccountBackground>
@@ -30,7 +33,7 @@ export const RegisterScreen = ({navigation}) => {
           textContentType="emailAddress"
           keyboardType="email-address"
           autoCapitalize="none"
-          onChangeText={u => setEmail(u)}
+          onChangeText={(u: string) => setEmail(u)}
         />
         <Spacer size="large">
           <AuthInput
@@ -39,22 +42,12 @@ export const RegisterScreen = ({navigation}) => {
             textContentType="password"
             secureTextEntry
             autoCapitalize="none"
-            onChangeText={p => setPassword(p)}
-          />
-        </Spacer>
-        <Spacer size="large">
-          <AuthInput
-            label="Repeat Password"
-            value={repeatedPassword}
-            textContentType="password"
-            secureTextEntry
-            autoCapitalize="none"
-            onChangeText={p => setRepeatedPassword(p)}
+            onChangeText={(p: string) => setPassword(p)}
           />
         </Spacer>
         {error && (
           <Spacer size="large">
-            <ErrorContainer size="large">
+            <ErrorContainer>
               <Text variant="error">{error}</Text>
             </ErrorContainer>
           </Spacer>
@@ -64,10 +57,10 @@ export const RegisterScreen = ({navigation}) => {
             <ActivityIndicator animating={true} color={Colors.blue300} />
           ) : (
             <AuthButton
-              icon="email"
+              icon="lock-open-outline"
               mode="contained"
-              onPress={() => onRegister(email, password, repeatedPassword)}>
-              Register
+              onPress={() => onLogin(email, password)}>
+              Login
             </AuthButton>
           )}
         </Spacer>

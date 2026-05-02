@@ -2,6 +2,7 @@ import React, {useContext, useState} from 'react';
 import styled from 'styled-components/native';
 import {TouchableOpacity} from 'react-native';
 import {ActivityIndicator, Colors} from 'react-native-paper';
+import {StackScreenProps} from '@react-navigation/stack';
 
 import {FadeInView} from '../../../components/animations/fade.animation';
 import {SafeArea} from '../../../components/utility/safe-area.component';
@@ -16,8 +17,9 @@ import {FavoritesBar} from '../../../components/favorites/favorites-bar.componen
 import {Search} from '../components/search.component';
 import {RestaurantInfoCard} from '../components/restaurant-info-card.component';
 import {RestaurantList} from '../components/restaurant-list.styles';
+import {RestaurantStackParamList} from '../../../infrastructure/navigation/restaurants.navigator';
 
-const Loading = styled(ActivityIndicator)`
+const Loading = styled(ActivityIndicator as any)`
   margin-left: -25px;
 `;
 
@@ -27,7 +29,9 @@ const LoadingContainer = styled.View`
   left: 50%;
 `;
 
-export const RestaurantsScreen = ({navigation}) => {
+type Props = StackScreenProps<RestaurantStackParamList, 'RestaurantList'>;
+
+export const RestaurantsScreen = ({navigation}: Props) => {
   const {error: locationError} = useContext(LocationContext);
   const {isLoading, restaurants, error} = useContext(RestaurantsContext);
   const {favorites} = useContext(FavoritesContext);
@@ -46,7 +50,10 @@ export const RestaurantsScreen = ({navigation}) => {
         onFavoritesToggle={() => setIsToggled(!isToggled)}
       />
       {isToggled && (
-        <FavoritesBar favorites={favorites} onNavigate={navigation.navigate} />
+        <FavoritesBar
+          favorites={favorites}
+          onNavigate={(name: any, params: any) => navigation.navigate(name, params)}
+        />
       )}
       {hasError && (
         <Spacer position="left" size="large">
@@ -56,7 +63,7 @@ export const RestaurantsScreen = ({navigation}) => {
       {!hasError && (
         <RestaurantList
           data={restaurants}
-          renderItem={({item}) => {
+          renderItem={({item}: {item: any}) => {
             return (
               <TouchableOpacity
                 onPress={() =>
@@ -72,7 +79,7 @@ export const RestaurantsScreen = ({navigation}) => {
               </TouchableOpacity>
             );
           }}
-          keyExtractor={item => item.name}
+          keyExtractor={(item: any) => item.name}
         />
       )}
     </SafeArea>

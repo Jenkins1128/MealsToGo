@@ -1,15 +1,18 @@
 import React, {useState, useContext} from 'react';
 import {ScrollView} from 'react-native';
 import {List, Divider} from 'react-native-paper';
+import {StackScreenProps} from '@react-navigation/stack';
 
 import {RestaurantInfoCard} from '../components/restaurant-info-card.component';
-
 import {SafeArea} from '../../../components/utility/safe-area.component';
 import {Spacer} from '../../../components/spacer/spacer.component';
 import {OrderButton} from '../components/restaurant-list.styles';
 import {CartContext} from '../../../services/cart/cart.context';
+import {RestaurantStackParamList} from '../../../infrastructure/navigation/restaurants.navigator';
 
-export const RestaurantDetailScreen = ({navigation, route}) => {
+type Props = StackScreenProps<RestaurantStackParamList, 'RestaurantDetail'>;
+
+export const RestaurantDetailScreen = ({navigation, route}: Props) => {
   const {addToCart} = useContext(CartContext);
   const [breakfastExpanded, setBreakfastExpanded] = useState(false);
   const [lunchExpanded, setLunchExpanded] = useState(false);
@@ -19,7 +22,7 @@ export const RestaurantDetailScreen = ({navigation, route}) => {
 
   return (
     <SafeArea>
-      <Spacer size="large">
+      <Spacer position="top" size="large">
         <RestaurantInfoCard restaurant={restaurant} />
       </Spacer>
       <Spacer size="large" />
@@ -80,7 +83,7 @@ export const RestaurantDetailScreen = ({navigation, route}) => {
           mode="contained"
           onPress={() => {
             addToCart({item: 'special', price: 1299}, restaurant);
-            navigation.navigate('Checkout');
+            navigation.navigate('Checkout' as any);
           }}>
           Order Special Only 12.99
         </OrderButton>

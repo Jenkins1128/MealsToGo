@@ -7,7 +7,15 @@ const SearchContainer = styled.View`
   padding: ${props => props.theme.space[3]};
 `;
 
-export const Search = ({isFavoritesToggled, onFavoritesToggle}) => {
+interface SearchProps {
+  isFavoritesToggled: boolean;
+  onFavoritesToggle: () => void;
+}
+
+export const Search = ({
+  isFavoritesToggled,
+  onFavoritesToggle,
+}: SearchProps) => {
   const {keyword, search} = useContext(LocationContext);
   const [searchKeyword, setSearchKeyword] = useState(keyword);
 

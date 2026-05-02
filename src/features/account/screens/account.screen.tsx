@@ -1,5 +1,6 @@
 import React from 'react';
 import LottieView from 'lottie-react-native';
+import {StackScreenProps} from '@react-navigation/stack';
 
 import {
   AccountBackground,
@@ -10,8 +11,11 @@ import {
   Title,
 } from '../components/account.styles';
 import {Spacer} from '../../../components/spacer/spacer.component';
+import {AccountStackParamList} from '../../../infrastructure/navigation/account.navigator';
 
-export const AccountScreen = ({navigation}) => {
+type Props = StackScreenProps<AccountStackParamList, 'Main'>;
+
+export const AccountScreen = ({navigation}: Props) => {
   return (
     <AccountBackground>
       <AccountCover />

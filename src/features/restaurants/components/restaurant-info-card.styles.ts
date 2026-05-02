@@ -1,13 +1,13 @@
 import styled from 'styled-components/native';
 import {Card} from 'react-native-paper';
 
-export const RestaurantCard = styled(Card)`
+export const RestaurantCard = styled(Card as any)`
   background-color: ${props => props.theme.colors.bg.primary};
   width: 95%;
   align-self: center;
 `;
 
-export const RestaurantCardCover = styled(Card.Cover)`
+export const RestaurantCardCover = styled(Card.Cover as any)`
   padding: ${props => props.theme.space[3]};
   background-color: ${props => props.theme.colors.bg.primary};
 `;

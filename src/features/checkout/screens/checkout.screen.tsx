@@ -1,6 +1,7 @@
 import React, {useContext, useState} from 'react';
 import {ScrollView} from 'react-native';
 import {useConfirmPayment} from '@stripe/stripe-react-native';
+import {StackScreenProps} from '@react-navigation/stack';
 
 import {Text} from '../../../components/typography/text.component';
 import {Spacer} from '../../../components/spacer/spacer.component';
@@ -19,16 +20,19 @@ import {
 import {RestaurantInfoCard} from '../../restaurants/components/restaurant-info-card.component';
 import {List, Divider} from 'react-native-paper';
 import {payRequest} from '../../../services/checkout/checkout.service';
+import {CheckoutStackParamList} from '../../../infrastructure/navigation/checkout.navigator';
 
-export const CheckoutScreen = ({navigation}) => {
+type Props = StackScreenProps<CheckoutStackParamList, 'CheckoutScreen'>;
+
+export const CheckoutScreen = ({navigation}: Props) => {
   const {cart, restaurant, sum, clearCart} = useContext(CartContext);
   const [name, setName] = useState('');
-  const [card, setCard] = useState(null);
+  const [card, setCard] = useState<any>(null);
   const {confirmPayment, loading} = useConfirmPayment();
 
   const onPay = async () => {
     if (!card) {
-      navigation.navigate('CheckoutError', {
+      navigation.navigate('CheckoutError' as any, {
         error: 'Please fill in a valid credit card',
       });
       return;
@@ -36,11 +40,11 @@ export const CheckoutScreen = ({navigation}) => {
     try {
       await payRequest(name, sum, confirmPayment);
       clearCart();
-      navigation.navigate('CheckoutSuccess', {
+      navigation.navigate('CheckoutSuccess' as any, {
         error: 'Please fill in a valid credit card',
       });
     } catch (error) {
-      navigation.navigate('CheckoutError', {
+      navigation.navigate('CheckoutError' as any, {
         error: 'Something went wrong processing your credit card',
       });
     }
@@ -83,7 +87,7 @@ export const CheckoutScreen = ({navigation}) => {
         <NameInput
           label="Name"
           value={name}
-          onChangeText={t => {
+          onChangeText={(t: string) => {
             setName(t);
           }}
         />
