@@ -3,7 +3,6 @@ import React, { useContext, useState } from "react";
 import { useRouter } from "expo-router";
 import {
   AccountBackground,
-  AccountCover,
   AccountContainer,
   AuthButton,
   AuthInput,
@@ -29,7 +28,6 @@ export const RegisterScreen = () => {
 
   return (
     <AccountBackground>
-      <AccountCover />
       <Title>Meals To Go</Title>
       <AccountContainer>
         <AuthInput
@@ -40,26 +38,22 @@ export const RegisterScreen = () => {
           autoCapitalize="none"
           onChangeText={(u: string) => setEmail(u)}
         />
-        <Box className="mt-4">
-          <AuthInput
-            label="Password"
-            value={password}
-            textContentType="password"
-            secureTextEntry
-            autoCapitalize="none"
-            onChangeText={(p: string) => setPassword(p)}
-          />
-        </Box>
-        <Box className="mt-4">
-          <AuthInput
-            label="Repeat Password"
-            value={repeatedPassword}
-            textContentType="password"
-            secureTextEntry
-            autoCapitalize="none"
-            onChangeText={(p: string) => setRepeatedPassword(p)}
-          />
-        </Box>
+        <AuthInput
+          label="Password"
+          value={password}
+          textContentType="password"
+          secureTextEntry
+          autoCapitalize="none"
+          onChangeText={(p: string) => setPassword(p)}
+        />
+        <AuthInput
+          label="Repeat Password"
+          value={repeatedPassword}
+          textContentType="password"
+          secureTextEntry
+          autoCapitalize="none"
+          onChangeText={(p: string) => setRepeatedPassword(p)}
+        />
         {error && (
           <Box className="mt-4">
             <ErrorContainer>

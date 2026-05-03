@@ -11,9 +11,9 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   scheme: "mealstogo",
   userInterfaceStyle: "automatic",
   splash: {
-    image: "./assets/images/splash-icon.png",
+    image: "./assets/images/splash-icon-true.png",
     resizeMode: "contain",
-    backgroundColor: "#ffffff",
+    backgroundColor: "#50238e",
   },
   ios: {
     supportsTablet: true,
@@ -25,8 +25,13 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       foregroundImage: "./assets/images/adaptive-icon.png",
       backgroundColor: "#ffffff",
     },
-    package: "com.mealstogo.app",
+    package: "com.isaiah_jenkins.MealsToGo",
     googleServicesFile: "./google-services.json",
+    config: {
+      googleMaps: {
+        apiKey: process.env.GOOGLE_MAPS_API_KEY,
+      },
+    },
   },
   web: {
     bundler: "metro",

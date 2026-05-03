@@ -6,7 +6,6 @@ import { useRouter } from "expo-router";
 import {
   AccountBackground,
   AccountContainer,
-  AccountCover,
   AuthButton,
   AnimationWrapper,
   Title,
@@ -17,7 +16,6 @@ export const AccountScreen = () => {
 
   return (
     <AccountBackground>
-      <AccountCover />
       <AnimationWrapper>
         <LottieView
           key="animation"

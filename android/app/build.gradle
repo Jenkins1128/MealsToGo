@@ -87,9 +87,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'com.mealstogo.app'
+    namespace 'com.isaiah_jenkins.MealsToGo'
     defaultConfig {
-        applicationId 'com.mealstogo.app'
+        applicationId 'com.isaiah_jenkins.MealsToGo'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
