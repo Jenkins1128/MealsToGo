@@ -1,3 +1,4 @@
+import { Box } from "@/components/ui/box";
 import React from "react";
 import LottieView from "lottie-react-native";
 import { useRouter } from "expo-router";
@@ -9,8 +10,7 @@ import {
   AuthButton,
   AnimationWrapper,
   Title,
-} from "@/features/account/components/AccountStyles";
-import { Spacer } from "@/components/spacer/Spacer";
+} from "@/features/account/components/AccountComponents";
 
 export const AccountScreen = () => {
   const router = useRouter();
@@ -37,7 +37,7 @@ export const AccountScreen = () => {
         >
           Login
         </AuthButton>
-        <Spacer size="large">
+        <Box className="mt-4">
           <AuthButton
             icon="email"
             mode="contained"
@@ -45,7 +45,7 @@ export const AccountScreen = () => {
           >
             Register
           </AuthButton>
-        </Spacer>
+        </Box>
       </AccountContainer>
     </AccountBackground>
   );

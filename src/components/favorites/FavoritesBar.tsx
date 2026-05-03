@@ -1,17 +1,10 @@
+import { Box } from "@/components/ui/box";
 import React from "react";
-import { ScrollView, TouchableOpacity } from "react-native";
+import { ScrollView, TouchableOpacity} from "react-native";
 import { Card } from "react-native-paper";
-import styled from "styled-components/native";
-import { Spacer } from "@/components/spacer/Spacer";
 import { CompactRestaurantInfo } from "@/components/restaurant/CompactRestaurantInfo";
 import { Text } from "@/components/typography/Text";
 import { Restaurant } from "@/services/types";
-
-const FavoritesWrapper = styled(Card as any)`
-  padding: 10px;
-  z-index: 999;
-  border-radius: 15px;
-`;
 
 interface FavoritesBarProps {
   favorites: Restaurant[];
@@ -24,15 +17,15 @@ export const FavoritesBar = ({ favorites, onNavigate }: FavoritesBarProps) => {
   }
 
   return (
-    <FavoritesWrapper elevation={3}>
-      <Spacer position="left" size="large">
+    <Card elevation={3} className="p-[10px] z-50 rounded-[15px]">
+      <Box className="ml-4">
         <Text variant="caption">Favorites</Text>
-      </Spacer>
+      </Box>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {favorites.map((restaurant) => {
           const key = restaurant.name;
           return (
-            <Spacer key={key} position="left" size="medium">
+            <Box key={key} className="ml-2">
               <TouchableOpacity
                 onPress={() =>
                   onNavigate("RestaurantDetail", {
@@ -42,10 +35,10 @@ export const FavoritesBar = ({ favorites, onNavigate }: FavoritesBarProps) => {
               >
                 <CompactRestaurantInfo restaurant={restaurant} />
               </TouchableOpacity>
-            </Spacer>
+            </Box>
           );
         })}
       </ScrollView>
-    </FavoritesWrapper>
+    </Card>
   );
 };

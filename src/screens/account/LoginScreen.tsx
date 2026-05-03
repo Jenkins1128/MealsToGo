@@ -1,3 +1,4 @@
+import { Box } from "@/components/ui/box";
 import React, { useContext, useState } from "react";
 import { useRouter } from "expo-router";
 import {
@@ -8,9 +9,8 @@ import {
   AuthInput,
   ErrorContainer,
   Title,
-} from "@/features/account/components/AccountStyles";
+} from "@/features/account/components/AccountComponents";
 import { Text } from "@/components/typography/Text";
-import { Spacer } from "@/components/spacer/Spacer";
 import { AuthenticationContext } from "@/services/authentication/authenticationContext";
 import { ActivityIndicator, MD2Colors } from "react-native-paper";
 
@@ -39,7 +39,7 @@ export const LoginScreen = () => {
           autoCapitalize="none"
           onChangeText={(u: string) => setEmail(u)}
         />
-        <Spacer size="large">
+        <Box className="mt-4">
           <AuthInput
             label="Password"
             value={password}
@@ -48,15 +48,15 @@ export const LoginScreen = () => {
             autoCapitalize="none"
             onChangeText={(p: string) => setPassword(p)}
           />
-        </Spacer>
+        </Box>
         {error && (
-          <Spacer size="large">
+          <Box className="mt-4">
             <ErrorContainer>
               <Text variant="error">{error}</Text>
             </ErrorContainer>
-          </Spacer>
+          </Box>
         )}
-        <Spacer size="large">
+        <Box className="mt-4">
           {isLoading ? (
             <ActivityIndicator animating={true} color={MD2Colors.blue300} />
           ) : (
@@ -68,13 +68,13 @@ export const LoginScreen = () => {
               Login
             </AuthButton>
           )}
-        </Spacer>
+        </Box>
       </AccountContainer>
-      <Spacer size="large">
+      <Box className="mt-4">
         <AuthButton mode="contained" onPress={() => router.back()}>
           Back
         </AuthButton>
-      </Spacer>
+      </Box>
     </AccountBackground>
   );
 };

@@ -1,14 +1,13 @@
+import { Box } from "@/components/ui/box";
 import React, { useState, useContext } from "react";
-import { ScrollView } from "react-native";
-import { List, Divider } from "react-native-paper";
+import { ScrollView} from "react-native";
+import { List, Divider, Button } from "react-native-paper";
 import { useRouter } from "expo-router";
 
 import { RestaurantInfoCard } from "@/features/restaurants/components/RestaurantInfoCard";
 import { SafeArea } from "@/components/utility/SafeArea";
-import { Spacer } from "@/components/spacer/Spacer";
-import { OrderButton } from "@/features/restaurants/components/RestaurantListStyles";
 import { CartContext } from "@/services/cart/cartContext";
-import { colors } from "../../infrastructure/theme/Colors";
+import { colors } from "../../infrastructure/theme/colors";
 import { Restaurant } from "@/services/types";
 
 interface RestaurantDetailScreenProps {
@@ -27,10 +26,10 @@ export const RestaurantDetailScreen = ({
 
   return (
     <SafeArea>
-      <Spacer position="top" size="large">
+      <Box className="mt-4">
         <RestaurantInfoCard restaurant={restaurant} />
-      </Spacer>
-      <Spacer size="large" />
+      </Box>
+      <Box className="mb-4" />
       <ScrollView>
         <List.Accordion
           title="Breakfast"
@@ -86,11 +85,12 @@ export const RestaurantDetailScreen = ({
           <List.Item title="Fanta" />
         </List.Accordion>
       </ScrollView>
-      <Spacer position="bottom" size="large">
-        <OrderButton
+      <Box className="mb-4">
+        <Button
           icon="currency-usd"
           mode="contained"
           buttonColor={colors.brand.primary}
+          className="w-[80%] self-center p-2"
           onPress={() => {
             addToCart({ item: "special", price: 1299 }, restaurant);
             router.dismiss();
@@ -98,8 +98,8 @@ export const RestaurantDetailScreen = ({
           }}
         >
           Order Special Only 12.99
-        </OrderButton>
-      </Spacer>
+        </Button>
+      </Box>
     </SafeArea>
   );
 };

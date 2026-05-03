@@ -1,7 +1,15 @@
-import styled from "styled-components/native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import React from "react";
+import { SafeAreaView, SafeAreaViewProps } from "react-native-safe-area-context";
 
-export const SafeArea = styled(SafeAreaView as any)`
-  flex: 1;
-  background-color: ${(props: any) => props.theme.colors.bg.primary};
-`;
+interface Props extends SafeAreaViewProps {
+  className?: string;
+  children: React.ReactNode;
+}
+
+export const SafeArea = ({ className = "", children, ...props }: Props) => {
+  return (
+    <SafeAreaView className={`flex-1 bg-bg-primary ${className}`} {...props}>
+      {children}
+    </SafeAreaView>
+  );
+};

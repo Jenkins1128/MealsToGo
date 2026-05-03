@@ -1,48 +1,35 @@
+import { Box } from "@/components/ui/box";
 import React, { useContext } from "react";
-import styled from "styled-components/native";
+import { ImageBackground} from "react-native";
 import { List } from "react-native-paper";
 import { useRouter } from "expo-router";
 
-import { Spacer } from "@/components/spacer/Spacer";
 import { SafeArea } from "@/components/utility/SafeArea";
 import { AuthenticationContext } from "@/services/authentication/authenticationContext";
 import { colors } from "@/infrastructure/theme/colors";
-
-const SettingsBackground = styled.ImageBackground.attrs({
-  source: require("@assets/images/HomeBg.jpg"),
-})`
-  position: absolute;
-  height: 100%;
-  width: 100%;
-`;
-
-const TransparentSafeArea = styled(SafeArea)`
-  background-color: transparent;
-`;
-
-const SettingsItem = styled(List.Item as any)`
-  padding: ${(props: any) => props.theme.space[3]};
-  background-color: rgba(255, 255, 255, 0.4);
-`;
 
 export const SettingsScreen = () => {
   const router = useRouter();
   const { onLogout } = useContext(AuthenticationContext);
 
   return (
-    <SettingsBackground>
-      <TransparentSafeArea>
+    <ImageBackground
+      source={require("@assets/images/HomeBg.jpg")}
+      className="absolute h-full w-full"
+    >
+      <SafeArea className="bg-transparent">
         <List.Section>
-          <SettingsItem
+          <List.Item
             title="Favourites"
             description="View your favourites"
             left={(props: any) => (
               <List.Icon {...props} color={colors.ui.error} icon="heart" />
             )}
             onPress={() => router.push("/(tabs)/settings/Favorites")}
+            className="p-4 bg-white/40"
           />
-          <Spacer />
-          <SettingsItem
+          <Box className="mt-4" />
+          <List.Item
             title="Logout"
             left={(props: any) => (
               <List.Icon
@@ -52,9 +39,10 @@ export const SettingsScreen = () => {
               />
             )}
             onPress={onLogout}
+            className="p-4 bg-white/40"
           />
         </List.Section>
-      </TransparentSafeArea>
-    </SettingsBackground>
+      </SafeArea>
+    </ImageBackground>
   );
 };

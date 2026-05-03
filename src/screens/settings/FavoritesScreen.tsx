@@ -1,20 +1,12 @@
+import { Box } from "@/components/ui/box";
 import React, { useContext } from "react";
-import styled from "styled-components/native";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, FlatList } from "react-native";
 import { useRouter } from "expo-router";
 
 import { FavoritesContext } from "@/services/favorites/favoritesContext";
 import { Text } from "@/components/typography/Text";
 import { SafeArea } from "@/components/utility/SafeArea";
-import { Spacer } from "@/components/spacer/Spacer";
-
-import { RestaurantList } from "@/features/restaurants/components/RestaurantListStyles";
 import { RestaurantInfoCard } from "@/features/restaurants/components/RestaurantInfoCard";
-
-const NoFavoritesArea = styled(SafeArea)`
-  align-items: center;
-  justify-content: center;
-`;
 
 export const FavoritesScreen = () => {
   const router = useRouter();
@@ -22,8 +14,9 @@ export const FavoritesScreen = () => {
 
   return favorites.length ? (
     <SafeArea>
-      <RestaurantList
+      <FlatList
         data={favorites}
+        contentContainerStyle={{ padding: 16 }}
         renderItem={({ item }: { item: any }) => {
           return (
             <TouchableOpacity
@@ -37,9 +30,9 @@ export const FavoritesScreen = () => {
                 })
               }
             >
-              <Spacer position="bottom" size="large">
+              <Box className="mb-4">
                 <RestaurantInfoCard restaurant={item} />
-              </Spacer>
+              </Box>
             </TouchableOpacity>
           );
         }}
@@ -47,8 +40,8 @@ export const FavoritesScreen = () => {
       />
     </SafeArea>
   ) : (
-    <NoFavoritesArea>
+    <SafeArea className="items-center justify-center">
       <Text>No favorites yet</Text>
-    </NoFavoritesArea>
+    </SafeArea>
   );
 };

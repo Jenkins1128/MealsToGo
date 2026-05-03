@@ -1,3 +1,4 @@
+import { Box } from "@/components/ui/box";
 import React, { useRef, useEffect, ReactNode } from "react";
 import { Animated, ViewStyle } from "react-native";
 

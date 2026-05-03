@@ -1,11 +1,7 @@
+import { Box } from "@/components/ui/box";
 import React, { useContext, useState, useEffect } from "react";
-import styled from "styled-components/native";
 import { Searchbar } from "react-native-paper";
 import { LocationContext } from "@/services/location/locationContext";
-
-const SearchContainer = styled.View`
-  padding: ${(props: any) => props.theme.space[3]};
-`;
 
 interface SearchProps {
   isFavoritesToggled: boolean;
@@ -24,7 +20,7 @@ export const Search = ({
   }, [keyword]);
 
   return (
-    <SearchContainer>
+    <Box className="p-4">
       <Searchbar
         icon={isFavoritesToggled ? "heart" : "heart-outline"}
         onIconPress={onFavoritesToggle}
@@ -37,6 +33,6 @@ export const Search = ({
           search(searchKeyword);
         }}
       />
-    </SearchContainer>
+    </Box>
   );
 };

@@ -1,16 +1,10 @@
 import React, { useContext, useState, useEffect } from "react";
-import MapView, { Marker, Callout, Region } from "react-native-maps";
-import styled from "styled-components/native";
+import MapView, { Marker, Callout } from "react-native-maps";
 import { useRouter } from "expo-router";
 import { LocationContext } from "@/services/location/locationContext";
 import { RestaurantsContext } from "@/services/restaurants/restaurantsContext";
 import { Search } from "@/features/map/components/Search";
 import { MapCallout } from "@/features/map/components/MapCallout";
-
-const Map = styled(MapView as any)`
-  height: 100%;
-  width: 100%;
-`;
 
 const RestaurantMap = () => {
   const router = useRouter();
@@ -33,7 +27,8 @@ const RestaurantMap = () => {
   return (
     <>
       <Search />
-      <Map
+      <MapView
+        className="h-full w-full"
         region={{
           latitude: lat,
           longitude: lng,
@@ -67,7 +62,7 @@ const RestaurantMap = () => {
             </Marker>
           );
         })}
-      </Map>
+      </MapView>
     </>
   );
 };
@@ -76,7 +71,8 @@ export const MapScreen = () => {
   const { location } = useContext(LocationContext);
   if (!location) {
     return (
-      <Map
+      <MapView
+        className="h-full w-full"
         region={{
           latitude: 0,
           longitude: 0,

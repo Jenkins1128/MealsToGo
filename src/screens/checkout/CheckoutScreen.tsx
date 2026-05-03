@@ -1,25 +1,18 @@
+import { Box } from "@/components/ui/box";
 import React, { useContext, useState } from "react";
-import { ScrollView, TouchableOpacity } from "react-native";
+import { ScrollView, TouchableOpacity} from "react-native";
 import { useConfirmPayment } from "@stripe/stripe-react-native";
 import { useRouter } from "expo-router";
 
 import { Text } from "@/components/typography/Text";
-import { Spacer } from "@/components/spacer/Spacer";
 import { SafeArea } from "@/components/utility/SafeArea";
 
 import { CartContext } from "@/services/cart/cartContext";
 import { CreditCardInput } from "@/features/checkout/components/CreditCard";
-import {
-  CartIconContainer,
-  CartIcon,
-  NameInput,
-  PayButton,
-  ClearButton,
-  PaymentProcessing,
-} from "@/features/checkout/components/CheckoutStyles";
 import { RestaurantInfoCard } from "@/features/restaurants/components/RestaurantInfoCard";
-import { List, Divider } from "react-native-paper";
+import { List, Divider, Avatar, TextInput, Button, ActivityIndicator, MD2Colors } from "react-native-paper";
 import { payRequest } from "@/services/checkout/checkoutService";
+import { colors } from "@/infrastructure/theme/colors";
 
 export const CheckoutScreen = () => {
   const router = useRouter();
@@ -51,10 +44,10 @@ export const CheckoutScreen = () => {
   if (!cart.length || !restaurant) {
     return (
       <SafeArea>
-        <CartIconContainer>
-          <CartIcon icon="cart-off" />
+        <Box className="items-center justify-center flex-1">
+          <Avatar.Icon size={128} icon="cart-off" className="bg-brand-primary" />
           <Text>Your cart is empty</Text>
-        </CartIconContainer>
+        </Box>
       </SafeArea>
     );
   }
@@ -74,12 +67,19 @@ export const CheckoutScreen = () => {
       >
         <RestaurantInfoCard restaurant={restaurant} />
       </TouchableOpacity>
-      {loading && <PaymentProcessing />}
+      {loading && (
+        <ActivityIndicator 
+          size={128} 
+          animating={true} 
+          color={MD2Colors.blue300} 
+          className="absolute top-1/2 left-[35%] z-50" 
+        />
+      )}
       <ScrollView>
-        <Spacer position="left" size="medium">
-          <Spacer position="top" size="large">
+        <Box className="ml-4">
+          <Box className="mt-6">
             <Text>Your Order</Text>
-          </Spacer>
+          </Box>
           <List.Section>
             {cart.map(({ item, price }, i) => {
               return (
@@ -91,36 +91,41 @@ export const CheckoutScreen = () => {
             })}
           </List.Section>
           <Text>Total: {sum / 100}</Text>
-        </Spacer>
-        <Spacer position="top" size="large" />
+        </Box>
+        <Box className="mt-6" />
         <Divider />
-        <NameInput
+        <TextInput
           label="Name"
           value={name}
           onChangeText={(t: string) => {
             setName(t);
           }}
+          className="m-4"
         />
         {name.length > 0 && <CreditCardInput name={name} onSuccess={setCard} />}
-        <Spacer position="top" size="xxl" />
-        <PayButton
+        <Box className="mt-10" />
+        <Button
           disabled={loading}
           icon="currency-usd"
           mode="contained"
+          buttonColor={colors.brand.primary}
+          className="w-[80%] self-center p-2"
           onPress={onPay}
         >
           Pay
-        </PayButton>
-        <Spacer position="top" size="large">
-          <ClearButton
+        </Button>
+        <Box className="mt-6 mb-8">
+          <Button
             disabled={loading}
             icon="cart-off"
             mode="contained"
+            buttonColor={colors.ui.error}
+            className="w-[80%] self-center p-2"
             onPress={clearCart}
           >
             Clear Cart
-          </ClearButton>
-        </Spacer>
+          </Button>
+        </Box>
       </ScrollView>
     </SafeArea>
   );

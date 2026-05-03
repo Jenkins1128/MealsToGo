@@ -1,17 +1,15 @@
+import { Box } from "@/components/ui/box";
 import React from "react";
-
+import { Avatar } from "react-native-paper";
 import { Text } from "@/components/typography/Text";
 import { SafeArea } from "@/components/utility/SafeArea";
-import {
-  CartIconContainer,
-  CartIcon,
-} from "@/features/checkout/components/CheckoutStyles";
+import { colors } from "@/infrastructure/theme/colors";
 
 export const CheckoutSuccessScreen = () => (
   <SafeArea>
-    <CartIconContainer>
-      <CartIcon icon="check-bold" />
+    <Box className="items-center justify-center flex-1">
+      <Avatar.Icon size={128} icon="check-bold" className="bg-brand-primary" />
       <Text variant="label">Success!</Text>
-    </CartIconContainer>
+    </Box>
   </SafeArea>
 );

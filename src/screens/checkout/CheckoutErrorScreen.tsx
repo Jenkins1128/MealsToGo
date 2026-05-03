@@ -1,12 +1,9 @@
+import { Box } from "@/components/ui/box";
 import React from "react";
-
+import { Avatar } from "react-native-paper";
 import { Text } from "@/components/typography/Text";
 import { SafeArea } from "@/components/utility/SafeArea";
 import { colors } from "@/infrastructure/theme/colors";
-import {
-  CartIconContainer,
-  CartIcon,
-} from "@/features/checkout/components/CheckoutStyles";
 
 interface CheckoutErrorScreenProps {
   error: string;
@@ -15,10 +12,10 @@ interface CheckoutErrorScreenProps {
 export const CheckoutErrorScreen = ({ error = "" }: CheckoutErrorScreenProps) => {
   return (
     <SafeArea>
-      <CartIconContainer>
-        <CartIcon icon="close" bg={colors.ui.error} />
+      <Box className="items-center justify-center flex-1">
+        <Avatar.Icon size={128} icon="close" style={{ backgroundColor: colors.ui.error }} />
         <Text variant="label">{error}</Text>
-      </CartIconContainer>
+      </Box>
     </SafeArea>
   );
 };

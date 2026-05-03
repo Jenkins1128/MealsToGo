@@ -1,12 +1,11 @@
+import { Box } from "@/components/ui/box";
 import React, { useContext, useState } from "react";
-import styled from "styled-components/native";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, FlatList } from "react-native";
 import { ActivityIndicator, MD2Colors } from "react-native-paper";
 import { useRouter } from "expo-router";
 
 import { FadeInView } from "@/components/animations/FadeAnimation";
 import { SafeArea } from "@/components/utility/SafeArea";
-import { Spacer } from "@/components/spacer/Spacer";
 import { Text } from "@/components/typography/Text";
 
 import { LocationContext } from "@/services/location/locationContext";
@@ -16,17 +15,6 @@ import { FavoritesBar } from "@/components/favorites/FavoritesBar";
 
 import { Search } from "@/features/restaurants/components/Search";
 import { RestaurantInfoCard } from "@/features/restaurants/components/RestaurantInfoCard";
-import { RestaurantList } from "@/features/restaurants/components/RestaurantListStyles";
-
-const Loading = styled(ActivityIndicator as any)`
-  margin-left: -25px;
-`;
-
-const LoadingContainer = styled.View`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-`;
 
 export const RestaurantsScreen = () => {
   const router = useRouter();
@@ -39,9 +27,9 @@ export const RestaurantsScreen = () => {
   return (
     <SafeArea>
       {isLoading && (
-        <LoadingContainer>
-          <Loading size={50} animating={true} color={MD2Colors.blue300} />
-        </LoadingContainer>
+        <Box className="absolute top-1/2 left-1/2">
+          <ActivityIndicator className="-ml-[25px]" size={50} animating={true} color={MD2Colors.blue300} />
+        </Box>
       )}
       <Search
         isFavoritesToggled={isToggled}
@@ -62,13 +50,14 @@ export const RestaurantsScreen = () => {
         />
       )}
       {hasError && (
-        <Spacer position="left" size="large">
+        <Box className="ml-4">
           <Text variant="error">Something went wrong retrieving the data.</Text>
-        </Spacer>
+        </Box>
       )}
       {!hasError && (
-        <RestaurantList
+        <FlatList
           data={restaurants}
+          contentContainerStyle={{ padding: 16 }}
           renderItem={({ item }: { item: any }) => {
             return (
               <TouchableOpacity
@@ -82,11 +71,11 @@ export const RestaurantsScreen = () => {
                   })
                 }
               >
-                <Spacer position="bottom" size="large">
+                <Box className="mb-4">
                   <FadeInView>
                     <RestaurantInfoCard restaurant={item} />
                   </FadeInView>
-                </Spacer>
+                </Box>
               </TouchableOpacity>
             );
           }}
