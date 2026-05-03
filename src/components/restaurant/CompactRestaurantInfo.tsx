@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components/native";
 import WebView from "react-native-webview";
-import { Text } from "@/components/typography/Text.component";
+import { Text } from "@/components/typography/Text";
 import { Platform } from "react-native";
-import { Restaurant } from "@/services/Types";
+import { Restaurant } from "@/services/types";
 
 const CompactImage = styled.Image`
   border-radius: 10px;

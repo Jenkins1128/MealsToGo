@@ -5,12 +5,12 @@ import React, {
   useContext,
   ReactNode,
 } from "react";
-import { LocationContext } from "../location/Location.context";
+import { LocationContext } from "../location/locationContext";
 import {
   restaurantsRequest,
   restaurantTransform,
-} from "./Restaurants.service";
-import { Restaurant } from "../Types";
+} from './restaurantsService';
+import { Restaurant } from "../types";
 
 interface RestaurantsContextValue {
   restaurants: Restaurant[];

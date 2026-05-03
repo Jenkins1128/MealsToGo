@@ -1,15 +1,12 @@
 import React from "react";
-import { ThemeProvider as StyledThemeProvider } from "styled-components/native";
 import { Stack, useRouter, useSegments } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useFonts } from "expo-font";
 
-import { theme } from "@/infrastructure/theme";
-import { AuthenticationContext, AuthenticationContextProvider } from "@/services/authentication/Authentication.context";
+import "../global.css";
+import { AuthenticationContext, AuthenticationContextProvider } from "@/services/authentication/authenticationContext";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-
-const ThemeProvider = StyledThemeProvider as any;
 
 SplashScreen.preventAutoHideAsync();
 
@@ -51,12 +48,10 @@ export default function RootLayout() {
 
   return (
     <SafeAreaProvider>
-      <ThemeProvider theme={theme as any}>
-        <AuthenticationContextProvider>
-          <InitialLayout />
-          <StatusBar style="auto" />
-        </AuthenticationContextProvider>
-      </ThemeProvider>
+      <AuthenticationContextProvider>
+        <InitialLayout />
+        <StatusBar style="auto" />
+      </AuthenticationContextProvider>
     </SafeAreaProvider>
   );
 }

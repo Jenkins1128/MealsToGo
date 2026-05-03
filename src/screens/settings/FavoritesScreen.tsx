@@ -3,13 +3,13 @@ import styled from "styled-components/native";
 import { TouchableOpacity } from "react-native";
 import { useRouter } from "expo-router";
 
-import { FavoritesContext } from "@/services/favorites/Favorites.context";
-import { Text } from "@/components/typography/Text.component";
-import { SafeArea } from "@/components/utility/SafeArea.component";
-import { Spacer } from "@/components/spacer/Spacer.component";
+import { FavoritesContext } from "@/services/favorites/favoritesContext";
+import { Text } from "@/components/typography/Text";
+import { SafeArea } from "@/components/utility/SafeArea";
+import { Spacer } from "@/components/spacer/Spacer";
 
-import { RestaurantList } from "@/features/restaurants/components/RestaurantList.styles";
-import { RestaurantInfoCard } from "@/features/restaurants/components/RestaurantInfoCard.component";
+import { RestaurantList } from "@/features/restaurants/components/RestaurantListStyles";
+import { RestaurantInfoCard } from "@/features/restaurants/components/RestaurantInfoCard";
 
 const NoFavoritesArea = styled(SafeArea)`
   align-items: center;

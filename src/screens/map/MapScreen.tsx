@@ -2,10 +2,10 @@ import React, { useContext, useState, useEffect } from "react";
 import MapView, { Marker, Callout, Region } from "react-native-maps";
 import styled from "styled-components/native";
 import { useRouter } from "expo-router";
-import { LocationContext } from "@/services/location/Location.context";
-import { RestaurantsContext } from "@/services/restaurants/Restaurants.context";
-import { Search } from "@/features/map/components/Search.component";
-import { MapCallout } from "@/features/map/components/MapCallout.component";
+import { LocationContext } from "@/services/location/locationContext";
+import { RestaurantsContext } from "@/services/restaurants/restaurantsContext";
+import { Search } from "@/features/map/components/Search";
+import { MapCallout } from "@/features/map/components/MapCallout";
 
 const Map = styled(MapView as any)`
   height: 100%;

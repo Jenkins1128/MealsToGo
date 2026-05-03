@@ -6,8 +6,8 @@ import React, {
   ReactNode,
 } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { AuthenticationContext } from "../authentication/Authentication.context";
-import { Restaurant, CartItem } from "../Types";
+import { AuthenticationContext } from "../authentication/authenticationContext";
+import { Restaurant, CartItem } from "../types";
 
 interface CartContextValue {
   addToCart: (item: CartItem, restaurant: Restaurant) => void;

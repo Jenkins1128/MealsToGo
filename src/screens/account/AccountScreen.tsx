@@ -9,8 +9,8 @@ import {
   AuthButton,
   AnimationWrapper,
   Title,
-} from "@/features/account/components/Account.styles";
-import { Spacer } from "@/components/spacer/Spacer.component";
+} from "@/features/account/components/AccountStyles";
+import { Spacer } from "@/components/spacer/Spacer";
 
 export const AccountScreen = () => {
   const router = useRouter();

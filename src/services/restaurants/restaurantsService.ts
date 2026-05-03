@@ -1,7 +1,7 @@
 import camelize from "camelize";
 import axios from "axios";
-import { host, isMock } from "@/utils/Env";
-import { Restaurant } from "../Types";
+import { host, isMock } from "@/utils/env";
+import { Restaurant } from "../types";
 
 export const restaurantsRequest = async (location: string) => {
   try {

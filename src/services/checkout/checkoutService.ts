@@ -1,4 +1,4 @@
-import { host } from "@/utils/Env";
+import { host } from "@/utils/env";
 import axios from "axios";
 
 export const fetchPaymentIntentClientSecret = async (amount: number) => {

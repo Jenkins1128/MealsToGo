@@ -1,11 +1,11 @@
 import React from "react";
 
-import { Text } from "@/components/typography/Text.component";
-import { SafeArea } from "@/components/utility/SafeArea.component";
+import { Text } from "@/components/typography/Text";
+import { SafeArea } from "@/components/utility/SafeArea";
 import {
   CartIconContainer,
   CartIcon,
-} from "@/features/checkout/components/Checkout.styles";
+} from "@/features/checkout/components/CheckoutStyles";
 
 export const CheckoutSuccessScreen = () => (
   <SafeArea>

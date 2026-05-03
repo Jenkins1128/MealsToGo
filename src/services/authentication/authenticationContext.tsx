@@ -5,7 +5,7 @@ import {
   signOut,
   FirebaseAuthTypes,
 } from "@react-native-firebase/auth";
-import { loginRequest, registerRequest } from "./Authentication.service";
+import { loginRequest, registerRequest } from './authenticationService';
 
 const auth = getAuth();
 

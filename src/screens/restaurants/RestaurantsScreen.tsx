@@ -5,18 +5,18 @@ import { ActivityIndicator, MD2Colors } from "react-native-paper";
 import { useRouter } from "expo-router";
 
 import { FadeInView } from "@/components/animations/FadeAnimation";
-import { SafeArea } from "@/components/utility/SafeArea.component";
-import { Spacer } from "@/components/spacer/Spacer.component";
-import { Text } from "@/components/typography/Text.component";
+import { SafeArea } from "@/components/utility/SafeArea";
+import { Spacer } from "@/components/spacer/Spacer";
+import { Text } from "@/components/typography/Text";
 
-import { LocationContext } from "@/services/location/Location.context";
-import { RestaurantsContext } from "@/services/restaurants/Restaurants.context";
-import { FavoritesContext } from "@/services/favorites/Favorites.context";
-import { FavoritesBar } from "@/components/favorites/FavoritesBar.component";
+import { LocationContext } from "@/services/location/locationContext";
+import { RestaurantsContext } from "@/services/restaurants/restaurantsContext";
+import { FavoritesContext } from "@/services/favorites/favoritesContext";
+import { FavoritesBar } from "@/components/favorites/FavoritesBar";
 
-import { Search } from "@/features/restaurants/components/Search.component";
-import { RestaurantInfoCard } from "@/features/restaurants/components/RestaurantInfoCard.component";
-import { RestaurantList } from "@/features/restaurants/components/RestaurantList.styles";
+import { Search } from "@/features/restaurants/components/Search";
+import { RestaurantInfoCard } from "@/features/restaurants/components/RestaurantInfoCard";
+import { RestaurantList } from "@/features/restaurants/components/RestaurantListStyles";
 
 const Loading = styled(ActivityIndicator as any)`
   margin-left: -25px;

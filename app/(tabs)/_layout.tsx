@@ -4,11 +4,11 @@ import { Ionicons } from "@expo/vector-icons";
 import { StripeProvider } from "@stripe/stripe-react-native";
 import Constants from "expo-constants";
 
-import { FavoritesContextProvider } from "@/services/favorites/Favorites.context";
-import { LocationContextProvider } from "@/services/location/Location.context";
-import { RestaurantsContextProvider } from "@/services/restaurants/Restaurants.context";
-import { CartContextProvider } from "@/services/cart/Cart.context";
-import { colors } from "@/infrastructure/theme/Colors";
+import { FavoritesContextProvider } from "@/services/favorites/favoritesContext";
+import { LocationContextProvider } from "@/services/location/locationContext";
+import { RestaurantsContextProvider } from "@/services/restaurants/restaurantsContext";
+import { CartContextProvider } from "@/services/cart/cartContext";
+import { colors } from "@/infrastructure/theme/colors";
 
 const stripeKey =
   Constants.expoConfig?.extra?.stripePublishableKey ?? "";

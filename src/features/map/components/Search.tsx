@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components/native";
 import { Searchbar } from "react-native-paper";
-import { LocationContext } from "@/services/location/Location.context";
+import { LocationContext } from "@/services/location/locationContext";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const SearchContainer = styled.View`

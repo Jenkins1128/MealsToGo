@@ -1,12 +1,12 @@
 import React from "react";
 
-import { Text } from "@/components/typography/Text.component";
-import { SafeArea } from "@/components/utility/SafeArea.component";
-import { colors } from "@/infrastructure/theme/Colors";
+import { Text } from "@/components/typography/Text";
+import { SafeArea } from "@/components/utility/SafeArea";
+import { colors } from "@/infrastructure/theme/colors";
 import {
   CartIconContainer,
   CartIcon,
-} from "@/features/checkout/components/Checkout.styles";
+} from "@/features/checkout/components/CheckoutStyles";
 
 interface CheckoutErrorScreenProps {
   error: string;

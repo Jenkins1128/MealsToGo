@@ -6,7 +6,7 @@ import {
   ActivityIndicator,
   MD2Colors,
 } from "react-native-paper";
-import { colors } from "@/infrastructure/theme/Colors";
+import { colors } from "@/infrastructure/theme/colors";
 
 export const CartIconContainer = styled.View`
   align-items: center;

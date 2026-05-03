@@ -1,6 +1,6 @@
 import React from "react";
-import { CompactRestaurantInfo } from "@/components/restaurant/CompactRestaurantInfo.component";
-import { Restaurant } from "@/services/Types";
+import { CompactRestaurantInfo } from "@/components/restaurant/CompactRestaurantInfo";
+import { Restaurant } from "@/services/types";
 
 interface MapCalloutProps {
   restaurant: Restaurant;

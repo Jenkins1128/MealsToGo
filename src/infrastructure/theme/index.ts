@@ -1,7 +1,7 @@
-import { colors } from "./Colors";
-import { space, lineHeights } from "./Spacing";
-import { sizes } from "./Sizes";
-import { fonts, fontWeights, fontSizes } from "./Fonts";
+import { colors } from './colors';
+import { space, lineHeights } from './spacing';
+import { sizes } from './sizes';
+import { fonts, fontWeights, fontSizes } from './fonts';
 
 export const theme = {
   colors,

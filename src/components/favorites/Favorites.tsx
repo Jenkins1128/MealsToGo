@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import { TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import { Ionicons } from "@expo/vector-icons";
-import { FavoritesContext } from "@/services/favorites/Favorites.context";
-import { Restaurant } from "@/services/Types";
+import { FavoritesContext } from "@/services/favorites/favoritesContext";
+import { Restaurant } from "@/services/types";
 
 const FavoriteButton = styled(TouchableOpacity as any)`
   position: absolute;

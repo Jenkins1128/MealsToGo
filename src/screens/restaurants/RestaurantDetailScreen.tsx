@@ -3,13 +3,13 @@ import { ScrollView } from "react-native";
 import { List, Divider } from "react-native-paper";
 import { useRouter } from "expo-router";
 
-import { RestaurantInfoCard } from "@/features/restaurants/components/RestaurantInfoCard.component";
-import { SafeArea } from "@/components/utility/SafeArea.component";
-import { Spacer } from "@/components/spacer/Spacer.component";
-import { OrderButton } from "@/features/restaurants/components/RestaurantList.styles";
-import { CartContext } from "@/services/cart/Cart.context";
+import { RestaurantInfoCard } from "@/features/restaurants/components/RestaurantInfoCard";
+import { SafeArea } from "@/components/utility/SafeArea";
+import { Spacer } from "@/components/spacer/Spacer";
+import { OrderButton } from "@/features/restaurants/components/RestaurantListStyles";
+import { CartContext } from "@/services/cart/cartContext";
 import { colors } from "../../infrastructure/theme/Colors";
-import { Restaurant } from "@/services/Types";
+import { Restaurant } from "@/services/types";
 
 interface RestaurantDetailScreenProps {
   restaurant: Restaurant;

@@ -10,7 +10,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   icon: "./assets/images/icon.png",
   scheme: "mealstogo",
   userInterfaceStyle: "automatic",
-  newArchEnabled: true,
   splash: {
     image: "./assets/images/splash-icon.png",
     resizeMode: "contain",

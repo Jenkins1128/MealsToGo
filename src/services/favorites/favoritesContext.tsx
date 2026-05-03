@@ -6,8 +6,8 @@ import React, {
   ReactNode,
 } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { AuthenticationContext } from "../authentication/Authentication.context";
-import { Restaurant } from "../Types";
+import { AuthenticationContext } from "../authentication/authenticationContext";
+import { Restaurant } from "../types";
 
 interface FavoritesContextValue {
   favorites: Restaurant[];

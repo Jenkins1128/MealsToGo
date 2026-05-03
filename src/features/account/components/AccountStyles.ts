@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
-import { colors } from "@/infrastructure/theme/Colors";
+import { colors } from "@/infrastructure/theme/colors";
 import { Button, TextInput } from "react-native-paper";
-import { Text } from "@/components/typography/Text.component";
+import { Text } from "@/components/typography/Text";
 
 export const AccountBackground = styled.ImageBackground.attrs({
   source: require("@assets/images/HomeBg.jpg"),

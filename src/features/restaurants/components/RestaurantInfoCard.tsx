@@ -4,8 +4,8 @@ import { View } from "react-native";
 
 import star from "@assets/icons/Star";
 import open from "@assets/icons/Open";
-import { Spacer } from "@/components/spacer/Spacer.component";
-import { Text } from "@/components/typography/Text.component";
+import { Spacer } from "@/components/spacer/Spacer";
+import { Text } from "@/components/typography/Text";
 
 import {
   RestaurantCard,
@@ -15,9 +15,9 @@ import {
   Section,
   SectionEnd,
   Icon,
-} from "./RestaurantInfoCard.styles";
-import { Favorite } from "@/components/favorites/Favorites.component";
-import { Restaurant } from "@/services/Types";
+} from './RestaurantInfoCardStyles';
+import { Favorite } from "@/components/favorites/Favorites";
+import { Restaurant } from "@/services/types";
 
 interface RestaurantInfoCardProps {
   restaurant: Restaurant;

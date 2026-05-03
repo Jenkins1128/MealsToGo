@@ -3,10 +3,10 @@ import styled from "styled-components/native";
 import { List } from "react-native-paper";
 import { useRouter } from "expo-router";
 
-import { Spacer } from "@/components/spacer/Spacer.component";
-import { SafeArea } from "@/components/utility/SafeArea.component";
-import { AuthenticationContext } from "@/services/authentication/Authentication.context";
-import { colors } from "@/infrastructure/theme/Colors";
+import { Spacer } from "@/components/spacer/Spacer";
+import { SafeArea } from "@/components/utility/SafeArea";
+import { AuthenticationContext } from "@/services/authentication/authenticationContext";
+import { colors } from "@/infrastructure/theme/colors";
 
 const SettingsBackground = styled.ImageBackground.attrs({
   source: require("@assets/images/HomeBg.jpg"),

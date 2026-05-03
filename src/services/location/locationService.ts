@@ -1,7 +1,7 @@
 import camelize from "camelize";
 import axios from "axios";
-import { host, isMock } from "@/utils/Env";
-import { Location } from "../Types";
+import { host, isMock } from "@/utils/env";
+import { Location } from "../types";
 
 export const locationRequest = async (searchTerm: string) => {
   const url = `${host}/geocode?city=${searchTerm}&mock=${isMock}`;

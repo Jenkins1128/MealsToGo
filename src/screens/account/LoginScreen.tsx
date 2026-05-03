@@ -8,10 +8,10 @@ import {
   AuthInput,
   ErrorContainer,
   Title,
-} from "@/features/account/components/Account.styles";
-import { Text } from "@/components/typography/Text.component";
-import { Spacer } from "@/components/spacer/Spacer.component";
-import { AuthenticationContext } from "@/services/authentication/Authentication.context";
+} from "@/features/account/components/AccountStyles";
+import { Text } from "@/components/typography/Text";
+import { Spacer } from "@/components/spacer/Spacer";
+import { AuthenticationContext } from "@/services/authentication/authenticationContext";
 import { ActivityIndicator, MD2Colors } from "react-native-paper";
 
 export const LoginScreen = () => {
