@@ -36,9 +36,9 @@ export const LocationContextProvider = ({ children }: Props) => {
         setError(null);
         setIsLoading(false);
         setLocation(result);
-      } catch (e: any) {
+      } catch (e: unknown) {
         setIsLoading(false);
-        setError(e.toString());
+        setError(e instanceof Error ? e.message : String(e));
       }
     };
     requestLocation();

@@ -22,7 +22,7 @@ export const SettingsScreen = () => {
           <List.Item
             title="Favourites"
             description="View your favourites"
-            left={(props: any) => (
+            left={(props: { color: string; style: { marginLeft?: number; marginRight?: number; marginVertical?: number } }) => (
               <List.Icon {...props} color={colors.ui.error} icon="heart" />
             )}
             onPress={() => router.push("/(tabs)/settings/Favorites")}
@@ -31,7 +31,7 @@ export const SettingsScreen = () => {
           <Box className="mt-4" />
           <List.Item
             title="Logout"
-            left={(props: any) => (
+            left={(props: { color: string; style: { marginLeft?: number; marginRight?: number; marginVertical?: number } }) => (
               <List.Icon
                 {...props}
                 color={colors.ui.secondary}

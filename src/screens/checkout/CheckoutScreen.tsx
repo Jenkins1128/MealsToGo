@@ -2,6 +2,7 @@ import { Box } from "@/components/ui/box";
 import React, { useContext, useState } from "react";
 import { ScrollView, TouchableOpacity} from "react-native";
 import { useConfirmPayment } from "@stripe/stripe-react-native";
+import type { CardFieldInput } from "@stripe/stripe-react-native";
 import { useRouter } from "expo-router";
 
 import { Text } from "@/components/typography/Text";
@@ -18,7 +19,7 @@ export const CheckoutScreen = () => {
   const router = useRouter();
   const { cart, restaurant, sum, clearCart } = useContext(CartContext);
   const [name, setName] = useState("");
-  const [card, setCard] = useState<any>(null);
+  const [card, setCard] = useState<CardFieldInput.Details | null>(null);
   const { confirmPayment, loading } = useConfirmPayment();
 
   const onPay = async () => {
@@ -33,10 +34,14 @@ export const CheckoutScreen = () => {
       await payRequest(name, sum, confirmPayment);
       clearCart();
       router.push("/(tabs)/checkout/Success");
-    } catch (error: any) {
+    } catch (error: unknown) {
+      const message =
+        error instanceof Error
+          ? error.message
+          : String(error) || "Something went wrong processing your credit card";
       router.push({
         pathname: "/(tabs)/checkout/Error",
-        params: { error: error.message || error.toString() || "Something went wrong processing your credit card" },
+        params: { error: message },
       });
     }
   };

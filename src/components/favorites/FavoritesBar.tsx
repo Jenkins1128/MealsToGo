@@ -8,7 +8,7 @@ import { Restaurant } from "@/services/types";
 
 interface FavoritesBarProps {
   favorites: Restaurant[];
-  onNavigate: (name: string, params: any) => void;
+  onNavigate: (name: string, params: { restaurant: Restaurant }) => void;
 }
 
 export const FavoritesBar = ({ favorites, onNavigate }: FavoritesBarProps) => {

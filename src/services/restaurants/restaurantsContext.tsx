@@ -48,9 +48,9 @@ export const RestaurantsContextProvider = ({ children }: Props) => {
       setError(null);
       setIsLoading(false);
       setRestaurants(results);
-    } catch (e: any) {
+    } catch (e: unknown) {
       setIsLoading(false);
-      setError(e.toString());
+      setError(e instanceof Error ? e.message : String(e));
     }
   };
 

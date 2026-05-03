@@ -12,6 +12,7 @@ import { LocationContext } from "@/services/location/locationContext";
 import { RestaurantsContext } from "@/services/restaurants/restaurantsContext";
 import { FavoritesContext } from "@/services/favorites/favoritesContext";
 import { FavoritesBar } from "@/components/favorites/FavoritesBar";
+import { Restaurant } from "@/services/types";
 
 import { Search } from "@/features/restaurants/components/Search";
 import { RestaurantInfoCard } from "@/features/restaurants/components/RestaurantInfoCard";
@@ -38,7 +39,7 @@ export const RestaurantsScreen = () => {
       {isToggled && (
         <FavoritesBar
           favorites={favorites}
-          onNavigate={(_name: string, params: any) =>
+          onNavigate={(_name: string, params: { restaurant: Restaurant }) =>
             router.push({
               pathname: "/(tabs)/restaurants/[id]",
               params: {
@@ -58,7 +59,7 @@ export const RestaurantsScreen = () => {
         <FlatList
           data={restaurants}
           contentContainerStyle={{ padding: 16 }}
-          renderItem={({ item }: { item: any }) => {
+          renderItem={({ item }: { item: Restaurant }) => {
             return (
               <TouchableOpacity
                 onPress={() =>
@@ -79,7 +80,7 @@ export const RestaurantsScreen = () => {
               </TouchableOpacity>
             );
           }}
-          keyExtractor={(item: any) => item.name}
+          keyExtractor={(item: Restaurant) => item.name}
         />
       )}
     </SafeArea>
