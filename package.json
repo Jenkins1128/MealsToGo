@@ -23,7 +23,7 @@
     "camelize": "^1.0.1",
     "dotenv": "^16.4.0",
     "expo": "~55.0.0",
-    "expo-build-properties": "^55.0.13",
+    "expo-build-properties": "~55.0.13",
     "expo-constants": "~55.0.0",
     "expo-dev-client": "~55.0.0",
     "expo-font": "~55.0.0",

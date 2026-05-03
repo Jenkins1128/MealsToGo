@@ -45,6 +45,15 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         enableGooglePay: true,
       },
     ],
+    [
+      "expo-build-properties",
+      {
+        ios: {
+          useFrameworks: "static",
+        },
+      },
+    ],
+    "./withFirebaseHeaders.js",
   ],
   experiments: {
     typedRoutes: true,
