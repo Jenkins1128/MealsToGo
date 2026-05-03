@@ -1,0 +1,6 @@
+#!/usr/bin/expect -f
+set timeout -1
+spawn npx -y gluestack-ui@latest init
+expect "Please select the framework you are using:"
+send "\033\[B\r"
+expect eof

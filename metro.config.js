@@ -1,27 +1,6 @@
-/**
- * Metro configuration for React Native
- * https://github.com/facebook/react-native
- *
- * @format
- */
+const { getDefaultConfig } = require("expo/metro-config");
+const { withNativeWind } = require("nativewind/metro");
 
-module.exports = {
-  transformer: {
-    getTransformOptions: async () => ({
-      transform: {
-        experimentalImportSupport: false,
-        inlineRequires: true,
-      },
-    }),
-  },
-  server: {
-    rewriteRequestUrl: (url) => {
-      if (!url.endsWith('.bundle')) {
-        return url;
-      }
-      // https://github.com/facebook/react-native/issues/36794
-      // JavaScriptCore strips query strings, so try to re-add them with a best guess.
-      return url + '?platform=ios&dev=true&minify=false&modulesOnly=false&runModule=true';
-    }
-  }
-};
+const config = getDefaultConfig(__dirname);
+
+module.exports = withNativeWind(config, { input: "./global.css" });
