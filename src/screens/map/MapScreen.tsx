@@ -28,7 +28,7 @@ const RestaurantMap = () => {
     <>
       <Search />
       <MapView
-        className="h-full w-full"
+        style={{ height: "100%", width: "100%" }}
         region={{
           latitude: lat,
           longitude: lng,
@@ -72,7 +72,7 @@ export const MapScreen = () => {
   if (!location) {
     return (
       <MapView
-        className="h-full w-full"
+        style={{ height: "100%", width: "100%" }}
         region={{
           latitude: 0,
           longitude: 0,
