@@ -23,6 +23,7 @@
 | Language          | **TypeScript**                                                    |
 | Framework         | **React Native** + **Expo** (SDK 55)                              |
 | Navigation        | **Expo Router** (file-based)                                      |
+| State Management  | **Context API**                                                   |
 | Styling           | **NativeWind** (Tailwind CSS for React Native)                    |
 | Component Library | **Gluestack UI**                                                  |
 | UI Primitives     | **React Native Paper**                                            |
