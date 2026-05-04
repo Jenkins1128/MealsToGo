@@ -4,6 +4,7 @@ import { TouchableOpacity, FlatList } from "react-native";
 import { useRouter } from "expo-router";
 
 import { FavoritesContext } from "@/services/favorites/favoritesContext";
+import { Restaurant } from "@/services/types";
 import { Text } from "@/components/typography/Text";
 import { SafeArea } from "@/components/utility/SafeArea";
 import { RestaurantInfoCard } from "@/features/restaurants/components/RestaurantInfoCard";
@@ -17,7 +18,7 @@ export const FavoritesScreen = () => {
       <FlatList
         data={favorites}
         contentContainerStyle={{ padding: 16 }}
-        renderItem={({ item }: { item: any }) => {
+        renderItem={({ item }: { item: Restaurant }) => {
           return (
             <TouchableOpacity
               onPress={() =>
@@ -36,7 +37,7 @@ export const FavoritesScreen = () => {
             </TouchableOpacity>
           );
         }}
-        keyExtractor={(item: any) => item.name}
+        keyExtractor={(item: Restaurant) => item.name}
       />
     </SafeArea>
   ) : (

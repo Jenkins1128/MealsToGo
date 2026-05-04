@@ -1,7 +1,14 @@
 import camelize from "camelize";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { host, isMock } from "@/utils/env";
 import { Restaurant } from "../types";
+
+interface RawPlaceResult {
+  vicinity: string;
+  opening_hours?: { open_now: boolean };
+  business_status?: string;
+  [key: string]: unknown;
+}
 
 export const restaurantsRequest = async (location: string) => {
   try {
@@ -9,16 +16,16 @@ export const restaurantsRequest = async (location: string) => {
       `${host}/placesNearby?location=${location}&mock=${isMock}`
     );
     return res.data;
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.log("error", error);
-    if (error.response && error.response.data) {
+    if (error instanceof AxiosError && error.response?.data) {
       return error.response.data;
     }
     throw error;
   }
 };
 
-export const restaurantTransform = ({ results = [] }: { results: any[] }) => {
+export const restaurantTransform = ({ results = [] }: { results: RawPlaceResult[] }) => {
   const mappedResult = results.map((restaurant) => {
     return {
       ...restaurant,

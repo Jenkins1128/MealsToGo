@@ -1,4 +1,6 @@
-module.exports.locations = {
+import { GeocodeResponse } from "../types";
+
+export const locations: { [key: string]: GeocodeResponse } = {
   antwerp: {
     results: [
       {
@@ -20,20 +22,21 @@ module.exports.locations = {
         },
       },
     ],
+    status: "OK",
   },
-  'san francisco': {
+  "san francisco": {
     results: [
       {
         geometry: {
-          location: {lat: 37.7749295, lng: -122.4194155},
+          location: { lat: 37.7749295, lng: -122.4194155 },
           viewport: {
-            northeast: {lat: 37.812, lng: -122.3482},
-            southwest: {lat: 37.70339999999999, lng: -122.527},
+            northeast: { lat: 37.812, lng: -122.3482 },
+            southwest: { lat: 37.70339999999999, lng: -122.527 },
           },
         },
       },
     ],
-    status: 'OK',
+    status: "OK",
   },
   chicago: {
     results: [
@@ -56,6 +59,7 @@ module.exports.locations = {
         },
       },
     ],
+    status: "OK",
   },
   toronto: {
     results: [
@@ -78,5 +82,6 @@ module.exports.locations = {
         },
       },
     ],
+    status: "OK",
   },
 };

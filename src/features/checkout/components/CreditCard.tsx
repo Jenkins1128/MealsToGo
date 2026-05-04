@@ -1,13 +1,14 @@
 import React from 'react';
 import {CardField} from '@stripe/stripe-react-native';
+import type {CardFieldInput} from '@stripe/stripe-react-native';
 
 interface CreditCardInputProps {
   name: string;
-  onSuccess: (cardDetails: any) => void;
+  onSuccess: (cardDetails: CardFieldInput.Details) => void;
 }
 
 export const CreditCardInput = ({name, onSuccess}: CreditCardInputProps) => {
-  const onCardChange = (cardDetails: any) => {
+  const onCardChange = (cardDetails: CardFieldInput.Details) => {
     const isComplete = cardDetails.complete;
     if (isComplete) {
       onSuccess(cardDetails);
@@ -24,7 +25,7 @@ export const CreditCardInput = ({name, onSuccess}: CreditCardInputProps) => {
         backgroundColor: '#FFFFFF',
         textColor: '#000000',
         placeholderColor: '#cccccc',
-      } as any}
+      }}
       style={{
         width: '100%',
         height: 50,

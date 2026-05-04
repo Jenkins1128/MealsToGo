@@ -55,9 +55,9 @@ export const AuthenticationContextProvider = ({ children }: Props) => {
     try {
       await loginRequest(email, password);
       setIsLoading(false);
-    } catch (e: any) {
+    } catch (e: unknown) {
       setIsLoading(false);
-      setError(e.toString());
+      setError(e instanceof Error ? e.message : String(e));
     }
   };
 
@@ -82,9 +82,9 @@ export const AuthenticationContextProvider = ({ children }: Props) => {
     try {
       await registerRequest(email, password);
       setIsLoading(false);
-    } catch (e: any) {
+    } catch (e: unknown) {
       setIsLoading(false);
-      setError(e.toString());
+      setError(e instanceof Error ? e.message : String(e));
     }
   };
 
